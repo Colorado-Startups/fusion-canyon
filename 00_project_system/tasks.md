@@ -21,7 +21,13 @@
 ## Backlog
 
 1. **Decide the brand.** The name, the tagline "Build with fusion." and the palette are proposals on the concept draft. So is the mark, two canyon walls converging on a point of light.
-2. **Source the claims the page makes but the record lacks.** The full list is in FC-1 step 2.
+2. **Source the claims the page makes but the record lacks.** Open items, as listed on the page:
+   - Rawhide Unit 1 "280 MW"
+   - ATLAS "$150M" per the page, where Photon Mountain's notes say $160M
+   - 45 fs at the 0.85 PW mode
+   - The elevations and corridor lengths
+   - The 2020 Census populations
+   - "50 miles" to Photon Mountain
 
 ## Done
 

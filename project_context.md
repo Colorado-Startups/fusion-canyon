@@ -1,6 +1,6 @@
 # Fusion Canyon · Context
 
-*Rebuilt 2026-11-12. The original file was lost in the 2026-11-04 home wipe. This version draws on three surviving sources. They are the vision page (`03_deliverables/fusion_canyon_vision.html`, recovered from its live Artifact), the source record (`02_substance/sources_2026-09-22.md`) and the site's region data (`Website/data/regions/fusion-canyon.yaml`, private).*
+*Rebuilt 2026-11-12. The original file was lost in the 2026-11-04 home wipe. This version draws on three surviving sources. They are the vision page (`03_deliverables/fusion_canyon_vision.html`, recovered from its live Artifact) and the source record (`02_substance/sources_2026-09-22.md`). The third is the Colorado Startups site's region data, which lives outside this repo.*
 
 ## The idea
 
@@ -45,4 +45,4 @@ Photon Mountain (Boulder to Denver, computing with light) is the sister corridor
 
 - The vision page is "concept draft v0" (2026-09-22). Its name, tagline, mark and palette are proposals awaiting a decision.
 - A georeferenced corridor map with 16 sites lives on Felt and is not yet in this repo.
-- The repo is private while it is prepared to open to contributors. The work queue is `00_project_system/tasks.md`.
+- The repo is being opened to contributors (FC-1). The work queue is `00_project_system/tasks.md`.
