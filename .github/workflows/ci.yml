@@ -1,0 +1,27 @@
+name: ci
+
+# The Git Crafter CI standard (templates/ci/README.md, v4.1.0). One short job: the prose voice lint over every
+# Markdown file. It blocks only on em dashes and spaced en dashes; the other checks warn. No standard job, because
+# the repo has no build or test suite. Dependabot's github-actions entry bumps the pin.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  ci:
+    uses: SoulCraft-Org/git-crafter/.github/workflows/ci-standard.yml@2967fa33452f5801caef9a85808e05cc89e286b1 # v4.1.0
+    with:
+      paths: |
+        **/*.md
+        **/*.html
+        tools/**
+        quality/**
+      short: git ls-files -z '*.md' | xargs -0 python3 -I tools/voice_lint.py
