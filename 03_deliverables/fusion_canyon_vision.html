@@ -1,0 +1,998 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Fusion Canyon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  color-scheme: dark light;
+  --ground:#080D14;
+  --surface:#101923;
+  --surface-2:#16212D;
+  --edge:#25313E;
+  --edge-soft:#1B2531;
+  --text:#EAF0F6;
+  --dim:#94A3B2;
+  --faint:#657585;
+  --plasma:#5CE1E6;
+  --plasma-dim:#2E7F84;
+  --rim:#DE7F44;
+  --rim-dim:#8A5230;
+  --rock:#2A2119;
+  --sky:#0C1520;
+  --water:#4E9AC4;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --ground:#E7EBEF;
+    --surface:#FFFFFF;
+    --surface-2:#F2F5F8;
+    --edge:#CFD7E0;
+    --edge-soft:#E1E7ED;
+    --text:#0C141C;
+    --dim:#4F5C6B;
+    --faint:#7A8794;
+    --plasma:#0A6A71;
+    --plasma-dim:#8FCDD0;
+    --rim:#A2521F;
+    --rim-dim:#D9AE8C;
+    --rock:#E0D6C8;
+    --sky:#DCE5EC;
+    --water:#3E82AC;
+  }
+}
+:root[data-theme="light"]{
+  --ground:#E7EBEF; --surface:#FFFFFF; --surface-2:#F2F5F8; --edge:#CFD7E0;
+  --edge-soft:#E1E7ED; --text:#0C141C; --dim:#4F5C6B; --faint:#7A8794;
+  --plasma:#0A6A71; --plasma-dim:#8FCDD0; --rim:#A2521F; --rim-dim:#D9AE8C;
+  --rock:#E0D6C8; --sky:#DCE5EC; --water:#3E82AC;
+}
+
+*{box-sizing:border-box;}
+body{
+  background:var(--ground);
+  color:var(--text);
+  font-family:'Archivo',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  margin:0;
+  padding-inline:16px;
+  padding-block:0;
+  overflow-x:hidden;
+  font-size:15px;
+  line-height:1.4;
+}
+.sheet{
+  max-width:1120px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  padding-block:16px 40px;
+}
+svg{display:block;max-width:100%;}
+text{font-family:'DM Mono',ui-monospace,Menlo,Consolas,monospace;}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--edge);
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.row{display:grid;gap:14px;}
+.r-2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr));}
+.r-3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+
+.eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:.66rem;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--plasma);
+  margin:0;
+}
+.eyebrow.r{color:var(--rim);}
+.eyebrow.n{color:var(--faint);}
+h2{
+  font-size:clamp(1.05rem,2.3vw,1.32rem);
+  font-weight:800;
+  letter-spacing:-.02em;
+  margin:0;
+  line-height:1.15;
+  text-wrap:balance;
+}
+.cap{
+  font-family:'DM Mono',monospace;
+  font-size:.7rem;
+  line-height:1.6;
+  color:var(--faint);
+  margin:0;
+}
+.big{
+  font-weight:900;
+  letter-spacing:-.04em;
+  line-height:.9;
+  font-size:clamp(2.2rem,6vw,3.6rem);
+  font-variant-numeric:tabular-nums;
+}
+.big.p{color:var(--plasma);}
+.big.r{color:var(--rim);}
+.sub{font-family:'DM Mono',monospace;font-size:.72rem;color:var(--dim);line-height:1.55;}
+
+/* hero */
+.hero{padding:0;border:1px solid var(--edge);background:var(--surface);overflow:hidden;}
+.hero .top{padding:22px 20px 0;display:flex;flex-direction:column;gap:10px;}
+.lineage{display:flex;flex-wrap:wrap;gap:.5em;font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.09em;color:var(--faint);text-transform:uppercase;margin:0;}
+.lineage b{color:var(--text);font-weight:500;}
+.lineage i{color:var(--rim);font-style:normal;}
+.lock{display:flex;align-items:center;gap:13px;}
+h1{font-size:clamp(2.1rem,7.5vw,3.5rem);font-weight:900;letter-spacing:-.045em;line-height:.9;margin:0;}
+.tag{font-size:clamp(.95rem,2.4vw,1.15rem);font-weight:700;color:var(--plasma);letter-spacing:-.01em;margin:0;}
+.stand{font-family:'DM Mono',monospace;font-size:.78rem;line-height:1.65;color:var(--dim);max-width:60ch;margin:0 0 4px;}
+@media (prefers-reduced-motion: no-preference){
+  .core{animation:pulse 4s ease-in-out infinite;}
+  .beams{animation:bfade 4s ease-in-out infinite;}
+}
+@keyframes pulse{0%,100%{opacity:.8;}50%{opacity:1;}}
+@keyframes bfade{0%,100%{opacity:.3;}50%{opacity:.62;}}
+
+/* map key */
+.keylist{display:flex;flex-direction:column;gap:9px;margin:0;padding:0;list-style:none;}
+.keylist li{display:flex;gap:10px;align-items:flex-start;}
+.chip{
+  flex:0 0 auto;width:20px;height:20px;border-radius:50%;
+  display:grid;place-items:center;
+  font-family:'DM Mono',monospace;font-size:.66rem;font-weight:500;
+  background:var(--plasma);color:var(--ground);
+}
+.chip.r{background:var(--rim);}
+.chip.o{background:transparent;border:1px solid var(--faint);color:var(--faint);}
+.kn{font-size:.82rem;font-weight:700;line-height:1.3;}
+.kd{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--faint);line-height:1.5;}
+
+/* stat strip */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--edge);border:1px solid var(--edge);}
+.stat{background:var(--surface);padding:16px 14px;display:flex;flex-direction:column;gap:5px;}
+.sv{font-weight:900;font-size:clamp(1.4rem,3.4vw,1.9rem);letter-spacing:-.035em;font-variant-numeric:tabular-nums;line-height:1;}
+.sl{font-family:'DM Mono',monospace;font-size:.64rem;letter-spacing:.09em;text-transform:uppercase;color:var(--faint);line-height:1.4;}
+
+/* legend dots */
+.lg{display:flex;flex-wrap:wrap;gap:14px;font-family:'DM Mono',monospace;font-size:.66rem;color:var(--faint);letter-spacing:.06em;text-transform:uppercase;}
+.lg span{display:flex;align-items:center;gap:6px;}
+.sw{width:10px;height:10px;border-radius:50%;}
+
+footer{border-top:1px solid var(--edge);padding-top:18px;display:flex;flex-direction:column;gap:12px;}
+details{border:1px solid var(--edge);background:var(--surface);}
+summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:.8rem;list-style:none;}
+summary::-webkit-details-marker{display:none;}
+summary::after{content:" +";color:var(--plasma);font-family:'DM Mono',monospace;}
+details[open] summary::after{content:" \2212";}
+.cite{padding:0 16px 16px;font-family:'DM Mono',monospace;font-size:.68rem;line-height:1.75;color:var(--dim);display:flex;flex-direction:column;gap:6px;}
+a{color:var(--plasma);}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--plasma);outline-offset:3px;}
+.cite a{word-break:break-word;}
+</style>
+
+<div class="sheet">
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="top">
+    <p class="lineage"><span>Silicon Valley</span><i>&rsaquo;</i><span>Photon Mountain</span><i>&rsaquo;</i><b>Fusion Canyon</b></p>
+    <div class="lock">
+      <svg width="44" height="44" viewBox="0 0 64 64" role="img" aria-label="Fusion Canyon mark: two canyon walls converging on a point of light">
+        <path d="M1 5 L19 5 L29 59 L11 59 Z" fill="var(--rim)"></path>
+        <path d="M63 5 L45 5 L35 59 L53 59 Z" fill="var(--rim)"></path>
+        <circle cx="32" cy="47" r="13" fill="var(--plasma)" opacity=".18"></circle>
+        <circle cx="32" cy="47" r="7" fill="var(--plasma)"></circle>
+      </svg>
+      <h1>Fusion&nbsp;Canyon</h1>
+    </div>
+    <p class="tag">Build with fusion.</p>
+    <p class="stand">Fort Collins, Colorado. Where the lasers that drive fusion are built, fired, and repeated.</p>
+  </div>
+
+  <svg viewBox="0 0 1100 260" preserveAspectRatio="none" style="width:100%;height:clamp(150px,22vw,250px);" role="img" aria-label="Canyon cross section with four laser beams converging on a point of light at the canyon floor">
+    <defs>
+      <linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="var(--surface)"></stop><stop offset="100%" stop-color="var(--sky)"></stop>
+      </linearGradient>
+      <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="var(--plasma)" stop-opacity=".55"></stop>
+        <stop offset="100%" stop-color="var(--plasma)" stop-opacity="0"></stop>
+      </radialGradient>
+      <clipPath id="wl"><path d="M0 40 L240 40 L455 260 L0 260 Z"></path></clipPath>
+      <clipPath id="wr"><path d="M1100 18 L845 18 L600 260 L1100 260 Z"></path></clipPath>
+    </defs>
+    <rect x="0" y="0" width="1100" height="260" fill="url(#skyg)"></rect>
+    <g class="beams" stroke="var(--plasma)" stroke-width="1.4" fill="none" opacity=".42">
+      <path d="M340 0 L522 218"></path><path d="M420 0 L531 218"></path>
+      <path d="M660 0 L537 218"></path><path d="M740 0 L545 218"></path>
+    </g>
+    <path d="M0 40 L240 40 L455 260 L0 260 Z" fill="var(--rim)" opacity=".24"></path>
+    <path d="M1100 18 L845 18 L600 260 L1100 260 Z" fill="var(--rim)" opacity=".24"></path>
+    <g clip-path="url(#wl)" stroke="var(--rim)" stroke-width="1" opacity=".42" fill="none">
+      <path d="M-20 72 L500 72"></path><path d="M-20 106 L500 106"></path><path d="M-20 140 L500 140"></path>
+      <path d="M-20 174 L500 174"></path><path d="M-20 208 L500 208"></path><path d="M-20 242 L500 242"></path>
+    </g>
+    <g clip-path="url(#wr)" stroke="var(--rim)" stroke-width="1" opacity=".42" fill="none">
+      <path d="M580 50 L1120 50"></path><path d="M580 84 L1120 84"></path><path d="M580 118 L1120 118"></path>
+      <path d="M580 152 L1120 152"></path><path d="M580 186 L1120 186"></path><path d="M580 220 L1120 220"></path>
+    </g>
+    <path d="M0 40 L240 40 L455 260" fill="none" stroke="var(--rim)" stroke-width="2"></path>
+    <path d="M1100 18 L845 18 L600 260" fill="none" stroke="var(--rim)" stroke-width="2"></path>
+    <circle cx="530" cy="226" r="86" fill="url(#glow)"></circle>
+    <g class="core">
+      <circle cx="530" cy="226" r="16" fill="var(--plasma)" opacity=".35"></circle>
+      <circle cx="530" cy="226" r="7.5" fill="var(--plasma)"></circle>
+    </g>
+  </svg>
+</header>
+
+<!-- ===================== HEADLINE NUMBERS ===================== -->
+<div class="stats">
+  <div class="stat"><span class="sv" style="color:var(--plasma)">0.85 PW</span><span class="sl">ALEPH peak power &middot; today</span></div>
+  <div class="stat"><span class="sv" style="color:var(--rim)">$150M</span><span class="sl">ATLAS facility &middot; Dec 2026</span></div>
+  <div class="stat"><span class="sv">10 Hz</span><span class="sl">ATLAS shot rate</span></div>
+  <div class="stat"><span class="sv">$16M</span><span class="sl">DOE RISE hub &middot; CSU led</span></div>
+  <div class="stat"><span class="sv">280 MW</span><span class="sl">Coal retiring 25 mi north</span></div>
+</div>
+
+<!-- ===================== THE NAME ===================== -->
+<section class="card">
+  <div class="row r-2" style="grid-template-columns:minmax(250px,1fr) minmax(280px,1.3fr);align-items:center;">
+    <div style="display:flex;flex-direction:column;gap:11px;">
+      <p class="eyebrow">The name</p>
+      <h2>Named for the canyon. Built on the plain.</h2>
+      <p class="sub">
+        The corridor is not in a canyon, and it is better to say so first. Fort Collins sits at
+        5,003 ft on open plains. The canyon is 20 miles upstream and 5,000 ft up. It is the name
+        because the Poudre comes out of it, the city drinks from it, and the irrigated ground the
+        whole band sits on exists because of it.
+      </p>
+      <p class="sub" style="color:var(--faint);">
+        Medicon Valley names a strait. Silicon Slopes names ground its companies are not on.
+        A region takes the name of the landmark it faces.
+      </p>
+    </div>
+
+    <svg viewBox="0 0 640 250" style="width:100%;" role="img" aria-label="Profile showing the Poudre Canyon at 5,400 feet on the left, the river running east onto the plain, and the 22.6 mile corridor band from Fort Collins at 5,003 feet to Greeley at 4,658 feet">
+      <rect x="0" y="0" width="640" height="250" fill="var(--surface-2)"></rect>
+
+      <!-- canyon block -->
+      <path d="M0 40 L96 40 L126 150 L0 150 Z" fill="var(--rim)" opacity=".3"></path>
+      <path d="M0 40 L96 40 L126 150" fill="none" stroke="var(--rim)" stroke-width="2"></path>
+      <g stroke="var(--rim)" stroke-width="1" opacity=".45" fill="none">
+        <path d="M0 68 L140 68"></path><path d="M0 96 L140 96"></path><path d="M0 124 L140 124"></path>
+      </g>
+      <text x="8" y="30" font-size="11" fill="var(--rim)">POUDRE CANYON</text>
+      <text x="8" y="166" font-size="11" fill="var(--dim)">5,400 FT</text>
+      <text x="8" y="182" font-size="10" fill="var(--faint)">THE SOURCE</text>
+
+      <!-- the plain -->
+      <rect x="126" y="150" width="514" height="4" fill="var(--edge)"></rect>
+      <path d="M126 150 L640 162" fill="none" stroke="var(--edge)" stroke-width="1" stroke-dasharray="4 5"></path>
+
+      <!-- river -->
+      <path d="M118 142 C 200 150, 300 154, 420 158 S 560 164, 632 166"
+            fill="none" stroke="var(--water)" stroke-width="2.6" stroke-linecap="round"></path>
+      <text x="300" y="138" font-size="10.5" fill="var(--water)">CACHE LA POUDRE</text>
+
+      <!-- corridor band -->
+      <rect x="170" y="172" width="452" height="30" fill="var(--plasma)" opacity=".14"></rect>
+      <rect x="170" y="172" width="452" height="30" fill="none" stroke="var(--plasma)" stroke-width="1.4"></rect>
+      <g fill="var(--plasma)">
+        <circle cx="196" cy="187" r="7"></circle>
+        <circle cx="300" cy="187" r="3.5"></circle>
+        <circle cx="430" cy="187" r="4.5"></circle>
+        <circle cx="596" cy="187" r="6"></circle>
+      </g>
+      <text x="176" y="220" font-size="10.5" fill="var(--dim)">FORT COLLINS</text>
+      <text x="566" y="220" font-size="10.5" fill="var(--dim)">GREELEY</text>
+      <text x="176" y="236" font-size="10" fill="var(--faint)">5,003 FT</text>
+      <text x="566" y="236" font-size="10" fill="var(--faint)">4,658 FT</text>
+      <text x="326" y="236" font-size="10.5" fill="var(--plasma)" text-anchor="middle">THE CORRIDOR &middot; 22.6 MI</text>
+
+      <!-- 20 mile gap marker -->
+      <path d="M126 112 L190 112" stroke="var(--faint)" stroke-width="1"></path>
+      <path d="M126 108 L126 116 M190 108 L190 116" stroke="var(--faint)" stroke-width="1"></path>
+      <text x="158" y="104" font-size="10" fill="var(--faint)" text-anchor="middle">20 MI</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ===================== THE MAP ===================== -->
+<section class="card">
+  <div>
+    <p class="eyebrow">The place</p>
+    <h2>Larimer and Weld counties, Northern Colorado</h2>
+  </div>
+
+  <div class="row r-2" style="grid-template-columns:minmax(300px,1.55fr) minmax(220px,1fr);">
+    <svg viewBox="0 0 520 660" role="img" aria-label="Map of Northern Colorado showing the Front Range foothills, the Cache la Poudre River, Interstate 25, and six numbered sites from Rawhide Energy Station in the north to Loveland in the south">
+      <rect x="0" y="0" width="520" height="660" fill="var(--surface-2)"></rect>
+
+      <!-- foothills / mountain front -->
+      <path d="M0 8 L95 8 L78 68 L105 138 L86 208 L120 271 L95 338 L112 408 L90 478 L118 548 L96 652 L0 652 Z" fill="var(--rock)"></path>
+      <g stroke="var(--rim)" stroke-width="1.1" fill="none" opacity=".5">
+        <path d="M14 60 L34 40 L54 62"></path><path d="M20 150 L42 126 L66 152"></path>
+        <path d="M10 236 L30 214 L52 240"></path><path d="M24 330 L46 306 L70 334"></path>
+        <path d="M12 424 L34 400 L58 428"></path><path d="M22 520 L44 496 L68 524"></path>
+        <path d="M10 608 L32 584 L56 612"></path>
+      </g>
+
+      <!-- Cache la Poudre River -->
+      <path d="M0 239 L70 257 L125 271 L168 294 L210 331 L252 345 L315 386 L399 451 L483 494"
+            fill="none" stroke="var(--water)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"></path>
+
+      <!-- Horsetooth Reservoir -->
+      <path d="M104 320 L112 318 L120 352 L124 392 L117 396 L108 356 Z" fill="var(--water)" opacity=".8"></path>
+
+      <!-- Interstate 25 -->
+      <path d="M291 8 L289 239 L287 345 L280 515 L273 652"
+            fill="none" stroke="var(--dim)" stroke-width="5" opacity=".55"></path>
+      <path d="M291 8 L289 239 L287 345 L280 515 L273 652"
+            fill="none" stroke="var(--surface-2)" stroke-width="1.3" stroke-dasharray="9 9"></path>
+
+      <!-- city footprints -->
+      <rect x="196" y="322" width="56" height="52" fill="var(--faint)" opacity=".2"></rect>
+      <rect x="206" y="500" width="40" height="34" fill="var(--faint)" opacity=".2"></rect>
+      <rect x="332" y="432" width="30" height="24" fill="var(--faint)" opacity=".2"></rect>
+      <rect x="462" y="478" width="44" height="34" fill="var(--faint)" opacity=".2"></rect>
+      <rect x="262" y="228" width="22" height="18" fill="var(--faint)" opacity=".2"></rect>
+
+      <!-- place labels -->
+      <g fill="var(--dim)" font-size="11" letter-spacing=".06em">
+        <text x="196" y="392">FORT COLLINS</text>
+        <text x="200" y="548">LOVELAND</text>
+        <text x="324" y="470">WINDSOR</text>
+        <text x="458" y="528">GREELEY</text>
+        <text x="256" y="222">WELLINGTON</text>
+      </g>
+      <g fill="var(--faint)" font-size="9.5" letter-spacing=".13em">
+        <text x="8" y="26">FRONT RANGE</text>
+        <text x="132" y="244" fill="var(--water)">CACHE LA POUDRE</text>
+        <text x="298" y="120" transform="rotate(90 298 120)">INTERSTATE 25</text>
+        <text x="392" y="620">WELD COUNTY</text>
+        <text x="132" y="620">LARIMER COUNTY</text>
+      </g>
+
+      <!-- numbered sites -->
+      <g>
+        <!-- 1 ATLAS + ALEPH -->
+        <circle cx="182" cy="352" r="17" fill="var(--plasma)" opacity=".2"></circle>
+        <circle cx="182" cy="352" r="10.5" fill="var(--plasma)"></circle>
+        <text x="182" y="356" text-anchor="middle" font-size="11" font-weight="500" fill="var(--ground)">1</text>
+        <!-- 2 Marvel Fusion US -->
+        <circle cx="236" cy="336" r="10.5" fill="var(--plasma)"></circle>
+        <text x="236" y="340" text-anchor="middle" font-size="11" font-weight="500" fill="var(--ground)">2</text>
+        <!-- 3 Rawhide -->
+        <circle cx="324" cy="71" r="10.5" fill="var(--rim)"></circle>
+        <text x="324" y="75" text-anchor="middle" font-size="11" font-weight="500" fill="var(--ground)">3</text>
+        <!-- 4 Poudre Canyon mouth -->
+        <circle cx="125" cy="271" r="10.5" fill="var(--rim)"></circle>
+        <text x="125" y="275" text-anchor="middle" font-size="11" font-weight="500" fill="var(--ground)">4</text>
+        <!-- 5 manufacturing ring -->
+        <circle cx="400" cy="466" r="10.5" fill="none" stroke="var(--faint)" stroke-width="1.4"></circle>
+        <text x="400" y="470" text-anchor="middle" font-size="11" font-weight="500" fill="var(--faint)">5</text>
+        <!-- 6 link south -->
+        <circle cx="273" cy="622" r="10.5" fill="none" stroke="var(--faint)" stroke-width="1.4"></circle>
+        <text x="273" y="626" text-anchor="middle" font-size="11" font-weight="500" fill="var(--faint)">6</text>
+        <path d="M273 636 L273 650 M268 645 L273 651 L278 645" fill="none" stroke="var(--faint)" stroke-width="1.4"></path>
+      </g>
+
+      <!-- scale bar + north -->
+      <g>
+        <path d="M400 30 L400 8 M394 16 L400 6 L406 16" fill="none" stroke="var(--dim)" stroke-width="1.5"></path>
+        <text x="410" y="22" font-size="10" fill="var(--dim)">N</text>
+        <rect x="400" y="598" width="92" height="4" fill="var(--dim)"></rect>
+        <rect x="400" y="598" width="46" height="4" fill="var(--surface-2)"></rect>
+        <rect x="400" y="598" width="92" height="4" fill="none" stroke="var(--dim)" stroke-width="1"></rect>
+        <text x="400" y="592" font-size="9.5" fill="var(--faint)">10 MI</text>
+      </g>
+    </svg>
+
+    <div style="display:flex;flex-direction:column;gap:16px;">
+      <ul class="keylist">
+        <li><span class="chip">1</span><span><span class="kn">ATLAS &amp; ALEPH</span><span class="kd">CSU Foothills Campus. 0.85 PW operating now, $150M facility topping out for Dec 2026.</span></span></li>
+        <li><span class="chip">2</span><span><span class="kn">Marvel Fusion, US</span><span class="kd">Munich company, US operations in Fort Collins. ~75 staff, ~&euro;385M raised.</span></span></li>
+        <li><span class="chip r">3</span><span><span class="kn">Rawhide Unit 1</span><span class="kd">280 MW of coal. Off by 2030. Interconnect, water and crew stay.</span></span></li>
+        <li><span class="chip r">4</span><span><span class="kn">Poudre Canyon</span><span class="kd">The canyon in the name. The city's water and the landform it is built around.</span></span></li>
+        <li><span class="chip o">5</span><span><span class="kn">The maker ring</span><span class="kd">Windsor, Greeley, Loveland. Industrial land, precision shops, transmission.</span></span></li>
+        <li><span class="chip o">6</span><span><span class="kn">50 mi to Photon Mountain</span><span class="kd">I-25 south to the computing-with-light corridor and Xcimer in Denver.</span></span></li>
+      </ul>
+      <div class="lg">
+        <span><i class="sw" style="background:var(--plasma)"></i>Operating</span>
+        <span><i class="sw" style="background:var(--rim)"></i>Changing</span>
+        <span><i class="sw" style="background:transparent;border:1px solid var(--faint)"></i>Context</span>
+      </div>
+      <p class="cap" style="border-top:1px solid var(--edge-soft);padding-top:12px;">
+        This map is schematic. The georeferenced version, 16 sites with coordinates, sources and
+        pin-confidence flags on every marker, is live at
+        <a href="https://felt.com/map/Fusion-Canyon-corridor-draft-v0-tTmfg7iZTimB8wraqY9A07D">felt.com</a>.
+      </p>
+    </div>
+  </div>
+
+  <!-- elevation profile -->
+  <div>
+    <svg viewBox="0 0 1080 190" style="width:100%;" role="img" aria-label="Approximate west to east elevation profile from Cameron Pass at 10,276 feet down through Poudre Canyon and Fort Collins at 5,003 feet to Greeley at 4,658 feet">
+      <rect x="0" y="0" width="1080" height="190" fill="var(--surface-2)"></rect>
+      <path d="M0 158 L60 108 L110 40 L160 96 L215 62 L280 116 L340 92 L410 128 L470 118 L520 136 L600 133 L700 141 L820 147 L1080 152 L1080 190 L0 190 Z"
+            fill="var(--rock)"></path>
+      <path d="M0 158 L60 108 L110 40 L160 96 L215 62 L280 116 L340 92 L410 128 L470 118 L520 136 L600 133 L700 141 L820 147 L1080 152"
+            fill="none" stroke="var(--rim)" stroke-width="2"></path>
+      <g stroke="var(--plasma)" stroke-width="1" stroke-dasharray="3 4" opacity=".7">
+        <path d="M520 136 L520 190"></path><path d="M700 141 L700 190"></path><path d="M1080 152 L1080 190"></path>
+      </g>
+      <circle cx="520" cy="136" r="5" fill="var(--plasma)"></circle>
+      <circle cx="110" cy="40" r="4" fill="var(--rim)"></circle>
+      <circle cx="280" cy="116" r="4" fill="var(--water)"></circle>
+      <g font-size="12" fill="var(--dim)">
+        <text x="88" y="30">10,276 FT</text>
+        <text x="258" y="106">5,400 FT</text>
+        <text x="498" y="126">5,003 FT</text>
+      </g>
+      <g font-size="11" fill="var(--faint)" letter-spacing=".1em">
+        <text x="88" y="180">CAMERON PASS</text>
+        <text x="240" y="180">CANYON MOUTH</text>
+        <text x="476" y="180">FORT COLLINS</text>
+        <text x="660" y="180">WINDSOR</text>
+        <text x="968" y="180">GREELEY</text>
+        <text x="8" y="16">WEST</text>
+        <text x="1032" y="16">EAST</text>
+      </g>
+    </svg>
+    <p class="cap" style="margin-top:8px;">Approximate elevation profile, west to east. The canyon is off the left edge of the working corridor: it drops 5,600 ft from Cameron Pass to the plain, and every site on the map above sits on the flat part.</p>
+  </div>
+</section>
+
+<!-- ===================== SCALE: POWER ===================== -->
+<div class="row r-2">
+  <section class="card">
+    <div><p class="eyebrow">Scale &middot; peak power</p><h2>One laser shot outruns the power plant</h2></div>
+    <svg viewBox="0 0 520 250" style="width:100%;" role="img" aria-label="Logarithmic bar chart of power, from a 2 kilowatt kettle to Rawhide Unit 1 at 280 megawatts to ALEPH at 0.85 petawatts of peak power">
+      <g font-size="11.5" fill="var(--dim)">
+        <text x="0" y="24">KETTLE</text>
+        <text x="0" y="84">RAWHIDE UNIT 1</text>
+        <text x="0" y="144">ALEPH, PEAK</text>
+        <text x="0" y="204">ATLAS, PEAK &times;3</text>
+      </g>
+      <g>
+        <rect x="0" y="32" width="55" height="16" fill="var(--faint)"></rect>
+        <text x="63" y="45" font-size="12" fill="var(--faint)">2 kW</text>
+
+        <rect x="0" y="92" width="220" height="16" fill="var(--rim)"></rect>
+        <text x="228" y="105" font-size="12" fill="var(--rim)">280 MW</text>
+
+        <rect x="0" y="152" width="430" height="16" fill="var(--plasma)"></rect>
+        <text x="438" y="165" font-size="12" fill="var(--plasma)">0.85 PW</text>
+
+        <rect x="0" y="212" width="460" height="16" fill="var(--plasma)" opacity=".35"></rect>
+        <path d="M462 220 L484 220 M477 214 L485 220 L477 226" fill="none" stroke="var(--plasma)" stroke-width="1.6"></path>
+        <text x="490" y="225" font-size="12" fill="var(--plasma)">&gt;</text>
+      </g>
+      <g stroke="var(--edge)" stroke-width="1" opacity=".7">
+        <path d="M110 14 L110 240"></path><path d="M220 14 L220 240"></path>
+        <path d="M330 14 L330 240"></path><path d="M440 14 L440 240"></path>
+      </g>
+      <g font-size="9.5" fill="var(--faint)" text-anchor="middle">
+        <text x="110" y="250">kW</text><text x="220" y="250">MW</text>
+        <text x="330" y="250">GW</text><text x="440" y="250">PW</text>
+      </g>
+    </svg>
+    <p class="cap">Log scale. ALEPH's peak is roughly 3,000,000&times; Rawhide Unit 1's output, and it lasts 45 femtoseconds.</p>
+  </section>
+
+  <section class="card" style="justify-content:space-between;">
+    <div><p class="eyebrow">Scale &middot; time</p><h2>45 femtoseconds</h2></div>
+    <svg viewBox="0 0 520 170" style="width:100%;" role="img" aria-label="Diagram comparing 45 femtoseconds to one second, scaled up to 700,000 years">
+      <rect x="0" y="34" width="500" height="20" fill="var(--edge)"></rect>
+      <rect x="0" y="34" width="2.4" height="20" fill="var(--plasma)"></rect>
+      <text x="0" y="26" font-size="11" fill="var(--dim)">ONE SECOND</text>
+      <text x="10" y="70" font-size="11" fill="var(--plasma)">&larr; the pulse, to scale (not visible)</text>
+
+      <path d="M0 100 L500 100" stroke="var(--edge)" stroke-width="1"></path>
+      <text x="0" y="128" font-size="12" fill="var(--faint)">IF THE PULSE WERE ONE SECOND,</text>
+      <text x="0" y="152" font-size="12" fill="var(--faint)">ONE SECOND WOULD BE</text>
+    </svg>
+    <div>
+      <p class="big p">700,000</p>
+      <p class="sub">years. Arithmetic from the published 45 fs pulse length, not a vendor claim.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== SHOT RATE ===================== -->
+<section class="card">
+  <div class="row r-2" style="grid-template-columns:minmax(200px,.62fr) minmax(280px,1fr);align-items:center;">
+    <div style="display:flex;flex-direction:column;gap:10px;">
+      <p class="eyebrow r">The hard part &middot; rate</p>
+      <h2>Every shot eats a target</h2>
+      <p class="big r">864,000</p>
+      <p class="sub">targets per day, per machine, at ten shots a second. Nobody manufactures them at that rate. This is the single largest open position in the corridor.</p>
+      <svg viewBox="0 0 300 66" style="width:100%;max-width:300px;" role="img" aria-label="Comparison of ALEPH at 3.3 shots per second in burst mode against ATLAS at 10 shots per second">
+        <text x="0" y="12" font-size="10.5" fill="var(--faint)">ALEPH, BURST</text>
+        <g fill="var(--plasma)">
+          <circle cx="6" cy="26" r="4"></circle><circle cx="22" cy="26" r="4"></circle><circle cx="38" cy="26" r="4"></circle>
+        </g>
+        <text x="52" y="30" font-size="10.5" fill="var(--faint)">3.3 / SEC</text>
+        <text x="0" y="50" font-size="10.5" fill="var(--faint)">ATLAS</text>
+        <g fill="var(--rim)">
+          <circle cx="6" cy="62" r="4"></circle><circle cx="22" cy="62" r="4"></circle><circle cx="38" cy="62" r="4"></circle>
+          <circle cx="54" cy="62" r="4"></circle><circle cx="70" cy="62" r="4"></circle><circle cx="86" cy="62" r="4"></circle>
+          <circle cx="102" cy="62" r="4"></circle><circle cx="118" cy="62" r="4"></circle><circle cx="134" cy="62" r="4"></circle>
+          <circle cx="150" cy="62" r="4"></circle>
+        </g>
+        <text x="164" y="66" font-size="10.5" fill="var(--faint)">10 / SEC</text>
+      </svg>
+    </div>
+
+    <div>
+      <svg viewBox="0 0 588 228" style="width:100%;" role="img" aria-label="A grid of 864 dots, each representing one thousand targets consumed per day">
+        <defs>
+          <pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse">
+            <circle cx="6" cy="6" r="2.3" fill="var(--rim)"></circle>
+          </pattern>
+        </defs>
+        <rect x="0" y="0" width="576" height="216" fill="url(#dots)"></rect>
+        <text x="0" y="226" font-size="10.5" fill="var(--faint)">864 DOTS &middot; 1,000 TARGETS EACH &middot; ONE DAY, ONE MACHINE</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TIMELINE ===================== -->
+<section class="card">
+  <div><p class="eyebrow">Three clocks</p><h2>Operating, opening, and honestly far off</h2></div>
+  <svg viewBox="0 0 1080 260" style="width:100%;" role="img" aria-label="Timeline from 2023 to the 2040s marking the RISE hub, groundbreaking, topping out, ATLAS completion, Rawhide coal retirement, and a first plant in the 2040s">
+    <!-- axis -->
+    <path d="M20 150 L760 150" stroke="var(--plasma)" stroke-width="3"></path>
+    <path d="M760 150 L940 150" stroke="var(--rim)" stroke-width="3"></path>
+    <path d="M940 150 L1060 150" stroke="var(--faint)" stroke-width="3" stroke-dasharray="7 7"></path>
+
+    <g font-size="11" fill="var(--faint)" text-anchor="middle">
+      <text x="60" y="182">2023</text><text x="240" y="182">2024</text><text x="420" y="182">2025</text>
+      <text x="620" y="182">2026</text><text x="880" y="182">2030</text><text x="1030" y="182">2040s</text>
+    </g>
+    <g stroke="var(--edge)" stroke-width="1">
+      <path d="M60 140 L60 160"></path><path d="M240 140 L240 160"></path><path d="M420 140 L420 160"></path>
+      <path d="M620 140 L620 160"></path><path d="M880 140 L880 160"></path><path d="M1030 140 L1030 160"></path>
+    </g>
+
+    <!-- events above -->
+    <g>
+      <circle cx="60" cy="150" r="7" fill="var(--plasma)"></circle>
+      <path d="M60 143 L60 96" stroke="var(--plasma)" stroke-width="1"></path>
+      <text x="60" y="86" font-size="12" fill="var(--text)" text-anchor="middle">RISE HUB</text>
+      <text x="60" y="70" font-size="11" fill="var(--faint)" text-anchor="middle">$16M &middot; DOE</text>
+
+      <circle cx="420" cy="150" r="7" fill="var(--plasma)"></circle>
+      <path d="M420 143 L420 96" stroke="var(--plasma)" stroke-width="1"></path>
+      <text x="420" y="86" font-size="12" fill="var(--text)" text-anchor="middle">TOPPED OUT</text>
+      <text x="420" y="70" font-size="11" fill="var(--faint)" text-anchor="middle">590 T STEEL</text>
+
+      <circle cx="880" cy="150" r="7" fill="var(--rim)"></circle>
+      <path d="M880 143 L880 96" stroke="var(--rim)" stroke-width="1"></path>
+      <text x="880" y="86" font-size="12" fill="var(--text)" text-anchor="middle">COAL OFF</text>
+      <text x="880" y="70" font-size="11" fill="var(--faint)" text-anchor="middle">RAWHIDE 280 MW</text>
+    </g>
+
+    <!-- events below -->
+    <g>
+      <circle cx="240" cy="150" r="7" fill="var(--plasma)"></circle>
+      <path d="M240 157 L240 202" stroke="var(--plasma)" stroke-width="1"></path>
+      <text x="240" y="218" font-size="12" fill="var(--text)" text-anchor="middle">GROUNDBREAKING</text>
+      <text x="240" y="234" font-size="11" fill="var(--faint)" text-anchor="middle">7,355 CU YD CONCRETE</text>
+
+      <circle cx="620" cy="150" r="10" fill="var(--rim)"></circle>
+      <circle cx="620" cy="150" r="17" fill="var(--rim)" opacity=".22"></circle>
+      <path d="M620 167 L620 202" stroke="var(--rim)" stroke-width="1"></path>
+      <text x="620" y="218" font-size="13" font-weight="500" fill="var(--rim)" text-anchor="middle">ATLAS COMPLETE</text>
+      <text x="620" y="234" font-size="11" fill="var(--faint)" text-anchor="middle">3 LASERS &middot; MULTI-PW &middot; 10 HZ</text>
+
+      <circle cx="1030" cy="150" r="7" fill="none" stroke="var(--faint)" stroke-width="1.5"></circle>
+      <path d="M1030 157 L1030 202" stroke="var(--faint)" stroke-width="1" stroke-dasharray="3 4"></path>
+      <text x="1030" y="218" font-size="12" fill="var(--faint)" text-anchor="middle">FIRST PLANT?</text>
+    </g>
+
+    <!-- honesty band -->
+    <text x="20" y="28" font-size="11.5" fill="var(--faint)">NO LASER FUSION MACHINE ANYWHERE PUTS POWER ON A GRID TODAY.</text>
+  </svg>
+  <div class="lg">
+    <span><i class="sw" style="background:var(--plasma)"></i>Operating today</span>
+    <span><i class="sw" style="background:var(--rim)"></i>Opening 2026 to 2030</span>
+    <span><i class="sw" style="background:transparent;border:1px solid var(--faint)"></i>On the horizon</span>
+  </div>
+</section>
+
+<!-- ===================== MONEY + SUPPLY CHAIN ===================== -->
+<div class="row r-2">
+  <section class="card">
+    <div><p class="eyebrow">Committed</p><h2>What is already funded here</h2></div>
+    <svg viewBox="0 0 520 230" style="width:100%;" role="img" aria-label="Bar chart of committed funding: 16 million for the RISE hub, 150 million for the ATLAS facility, and 385 million euros raised by Marvel Fusion">
+      <g>
+        <text x="0" y="24" font-size="11.5" fill="var(--dim)">DOE RISE HUB</text>
+        <rect x="0" y="32" width="21" height="26" fill="var(--plasma-dim)"></rect>
+        <text x="29" y="52" font-size="15" font-weight="500" fill="var(--text)">$16M</text>
+
+        <text x="0" y="98" font-size="11.5" fill="var(--dim)">ATLAS FACILITY</text>
+        <rect x="0" y="106" width="196" height="26" fill="var(--rim)"></rect>
+        <text x="204" y="126" font-size="15" font-weight="500" fill="var(--text)">$150M</text>
+
+        <text x="0" y="172" font-size="11.5" fill="var(--dim)">MARVEL FUSION, RAISED</text>
+        <rect x="0" y="180" width="440" height="26" fill="var(--plasma)"></rect>
+        <text x="0" y="226" font-size="15" font-weight="500" fill="var(--plasma)">&euro;385M</text>
+      </g>
+    </svg>
+    <p class="cap">Bars to scale within each currency. Marvel Fusion's raise is company-reported and spans Munich and Colorado.</p>
+  </section>
+
+  <section class="card">
+    <div><p class="eyebrow r">The gap list</p><h2>Six links. Four are missing.</h2></div>
+    <svg viewBox="0 0 520 300" style="width:100%;" role="img" aria-label="Supply chain diagram of six links: driver and people are present, optics is partial, and targets, diagnostics and siting are missing">
+      <g>
+        <!-- link 1 -->
+        <rect x="0" y="8" width="150" height="40" fill="var(--plasma)"></rect>
+        <text x="12" y="33" font-size="12.5" font-weight="500" fill="var(--ground)">DRIVER</text>
+        <text x="162" y="33" font-size="11.5" fill="var(--dim)">ALEPH + ATLAS</text>
+        <path d="M18 48 L18 62" stroke="var(--edge)" stroke-width="2"></path>
+
+        <rect x="0" y="62" width="150" height="40" fill="var(--plasma)"></rect>
+        <text x="12" y="87" font-size="12.5" font-weight="500" fill="var(--ground)">PEOPLE</text>
+        <text x="162" y="87" font-size="11.5" fill="var(--dim)">CSU, the shops, Marvel</text>
+        <path d="M18 102 L18 116" stroke="var(--edge)" stroke-width="2"></path>
+
+        <rect x="0" y="116" width="150" height="40" fill="var(--rim)" opacity=".5"></rect>
+        <rect x="0" y="116" width="150" height="40" fill="none" stroke="var(--rim)" stroke-width="1.5"></rect>
+        <text x="12" y="141" font-size="12.5" font-weight="500" fill="var(--text)">FINAL OPTICS</text>
+        <text x="162" y="141" font-size="11.5" fill="var(--dim)">partial, Front Range</text>
+        <path d="M18 156 L18 170" stroke="var(--edge)" stroke-width="2"></path>
+
+        <rect x="0" y="170" width="150" height="40" fill="none" stroke="var(--faint)" stroke-width="1.5" stroke-dasharray="5 5"></rect>
+        <text x="12" y="195" font-size="12.5" font-weight="500" fill="var(--faint)">TARGETS</text>
+        <text x="162" y="195" font-size="11.5" fill="var(--faint)">missing, at rate</text>
+        <path d="M18 210 L18 224" stroke="var(--edge)" stroke-width="2"></path>
+
+        <rect x="0" y="224" width="150" height="40" fill="none" stroke="var(--faint)" stroke-width="1.5" stroke-dasharray="5 5"></rect>
+        <text x="12" y="249" font-size="12.5" font-weight="500" fill="var(--faint)">SHOT DATA</text>
+        <text x="162" y="249" font-size="11.5" fill="var(--faint)">missing</text>
+        <path d="M18 264 L18 278" stroke="var(--edge)" stroke-width="2"></path>
+
+        <rect x="0" y="278" width="150" height="22" fill="none" stroke="var(--faint)" stroke-width="1.5" stroke-dasharray="5 5"></rect>
+        <text x="12" y="294" font-size="12.5" font-weight="500" fill="var(--faint)">SITING + WATER</text>
+        <text x="162" y="294" font-size="11.5" fill="var(--faint)">missing</text>
+      </g>
+    </svg>
+  </section>
+</div>
+
+<!-- ===================== RAWHIDE ===================== -->
+<section class="card">
+  <div><p class="eyebrow r">A site that frees itself</p><h2>Rawhide Unit 1, 25 miles north</h2></div>
+  <svg viewBox="0 0 1080 200" style="width:100%;" role="img" aria-label="Diagram showing a coal unit of 280 megawatts switching off by 2030 while its transmission interconnection, water and crew remain">
+    <!-- now -->
+    <g>
+      <text x="0" y="18" font-size="11.5" fill="var(--plasma)">TODAY</text>
+      <rect x="0" y="118" width="86" height="52" fill="var(--rim)" opacity=".55"></rect>
+      <rect x="26" y="52" width="20" height="66" fill="var(--rim)" opacity=".55"></rect>
+      <path d="M36 52 C 30 34, 54 30, 46 14 C 62 24, 44 40, 56 50" fill="var(--faint)" opacity=".4"></path>
+      <text x="0" y="192" font-size="12" fill="var(--dim)">280 MW COAL</text>
+    </g>
+
+    <!-- arrow -->
+    <g>
+      <path d="M150 144 L330 144" stroke="var(--edge)" stroke-width="2"></path>
+      <path d="M322 138 L332 144 L322 150" fill="none" stroke="var(--edge)" stroke-width="2"></path>
+      <text x="196" y="132" font-size="13" font-weight="500" fill="var(--rim)">BY 2030</text>
+    </g>
+
+    <!-- after -->
+    <g>
+      <text x="360" y="18" font-size="11.5" fill="var(--faint)">AFTER</text>
+      <rect x="360" y="118" width="86" height="52" fill="none" stroke="var(--faint)" stroke-width="1.5" stroke-dasharray="5 5"></rect>
+      <rect x="386" y="52" width="20" height="66" fill="none" stroke="var(--faint)" stroke-width="1.5" stroke-dasharray="5 5"></rect>
+      <text x="360" y="192" font-size="12" fill="var(--faint)">SHUT</text>
+    </g>
+
+    <!-- what stays: transmission -->
+    <g>
+      <text x="560" y="18" font-size="11.5" fill="var(--plasma)">WHAT STAYS</text>
+      <g stroke="var(--plasma)" stroke-width="1.8" fill="none">
+        <path d="M600 160 L616 60 L632 160 M604 130 L628 130 M608 100 L624 100"></path>
+        <path d="M584 74 L648 74"></path>
+        <path d="M760 160 L776 60 L792 160 M764 130 L788 130 M768 100 L784 100"></path>
+        <path d="M744 74 L808 74"></path>
+        <path d="M920 160 L936 60 L952 160 M924 130 L948 130 M928 100 L944 100"></path>
+        <path d="M904 74 L968 74"></path>
+        <path d="M584 78 Q 664 104 744 78" stroke-width="1.2"></path>
+        <path d="M648 78 Q 728 104 808 78" stroke-width="1.2"></path>
+        <path d="M744 78 Q 824 104 904 78" stroke-width="1.2"></path>
+        <path d="M808 78 Q 888 104 968 78" stroke-width="1.2"></path>
+      </g>
+      <text x="560" y="192" font-size="12" fill="var(--dim)">INTERCONNECTION &middot; WATER &middot; ROADS &middot; CREW</text>
+    </g>
+  </svg>
+</section>
+
+<!-- ===================== TWO CORRIDORS ===================== -->
+<section class="card">
+  <div><p class="eyebrow">Two corridors</p><h2>One builds with light. One makes the power it runs on.</h2></div>
+  <svg viewBox="0 0 1080 300" style="width:100%;" role="img" aria-label="Schematic of the Front Range showing Fusion Canyon in the north around Fort Collins and Photon Mountain in the south from Boulder to Denver, fifty miles apart along Interstate 25">
+    <rect x="0" y="0" width="1080" height="300" fill="var(--surface-2)"></rect>
+    <path d="M60 30 L60 270" stroke="var(--dim)" stroke-width="4" opacity=".5"></path>
+    <path d="M60 30 L60 270" stroke="var(--surface-2)" stroke-width="1.2" stroke-dasharray="8 8"></path>
+    <text x="30" y="150" font-size="10.5" fill="var(--faint)" transform="rotate(-90 30 150)" text-anchor="middle">I-25</text>
+
+    <!-- fusion canyon bracket -->
+    <path d="M100 34 L112 34 L112 120 L100 120" fill="none" stroke="var(--plasma)" stroke-width="2"></path>
+    <circle cx="60" cy="42" r="6" fill="var(--rim)"></circle>
+    <circle cx="60" cy="66" r="9" fill="var(--plasma)"></circle>
+    <circle cx="60" cy="92" r="5" fill="var(--plasma)" opacity=".6"></circle>
+    <circle cx="60" cy="114" r="5" fill="var(--plasma)" opacity=".6"></circle>
+    <g font-size="12" fill="var(--dim)">
+      <text x="74" y="46">Rawhide</text><text x="78" y="70" fill="var(--text)" font-size="13">Fort Collins</text>
+      <text x="74" y="96">Loveland</text><text x="74" y="118">Windsor</text>
+    </g>
+    <text x="130" y="66" font-size="19" font-weight="500" fill="var(--plasma)">FUSION CANYON</text>
+    <text x="130" y="88" font-size="11.5" fill="var(--faint)">LASERS &middot; TARGETS &middot; POWER CONVERSION &middot; GRID</text>
+
+    <!-- gap -->
+    <path d="M60 130 L60 186" stroke="var(--faint)" stroke-width="1" stroke-dasharray="4 5"></path>
+    <text x="78" y="162" font-size="12.5" fill="var(--faint)">50 MILES</text>
+
+    <!-- photon mountain bracket -->
+    <path d="M100 196 L112 196 L112 266 L100 266" fill="none" stroke="var(--rim)" stroke-width="2"></path>
+    <circle cx="60" cy="204" r="7" fill="var(--rim)"></circle>
+    <circle cx="60" cy="226" r="5" fill="var(--rim)" opacity=".6"></circle>
+    <circle cx="60" cy="246" r="5" fill="var(--rim)" opacity=".6"></circle>
+    <circle cx="60" cy="264" r="9" fill="var(--rim)"></circle>
+    <g font-size="12" fill="var(--dim)">
+      <text x="74" y="208">Boulder</text><text x="74" y="230">Arvada</text>
+      <text x="74" y="250">Golden</text><text x="78" y="268" fill="var(--text)" font-size="13">Denver</text>
+    </g>
+    <text x="130" y="226" font-size="19" font-weight="500" fill="var(--rim)">PHOTON MOUNTAIN</text>
+    <text x="130" y="248" font-size="11.5" fill="var(--faint)">PHOTONIC CHIPS &middot; SENSORS &middot; METROLOGY &middot; SOLAR</text>
+
+    <!-- shared instrument -->
+    <g>
+      <path d="M700 60 L700 240" stroke="var(--edge)" stroke-width="1"></path>
+      <text x="740" y="100" font-size="11.5" fill="var(--faint)">SHARED INSTRUMENT</text>
+      <rect x="740" y="120" width="130" height="26" fill="var(--plasma)"></rect>
+      <text x="752" y="138" font-size="13" font-weight="500" fill="var(--ground)">THE LASER</text>
+      <text x="740" y="182" font-size="11.5" fill="var(--faint)">SHARED CONSTRAINT</text>
+      <rect x="740" y="202" width="130" height="26" fill="var(--rim)"></rect>
+      <text x="752" y="220" font-size="13" font-weight="500" fill="var(--ground)">ELECTRICITY</text>
+    </g>
+  </svg>
+</section>
+
+<!--COMPARISON-PANEL-->
+<section class="card">
+  <div>
+    <p class="eyebrow">True scale</p>
+    <h2>Three cores, one ruler</h2>
+  </div>
+  <div style="overflow-x:auto;">
+    <svg viewBox="0 0 808 372" style="width:100%;min-width:760px;" role="img" aria-label="Three regions drawn at one shared scale of eight pixels per mile: Silicon Valley in California, Photon Mountain on the Front Range, and the proposed Fusion Canyon in Northern Colorado. Each city is a dot scaled to its 2020 census population.">
+<g transform="translate(0 0)">
+<path d="M 36.0 44.0 L 36.0 43.3 L 36.1 42.6 L 36.3 41.9 L 36.5 41.3 L 36.7 40.6 L 37.1 40.0 L 37.4 39.4 L 37.9 38.9 L 38.3 38.3 L 38.9 37.9 L 39.4 37.4 L 40.0 37.1 L 40.6 36.7 L 41.3 36.5 L 41.9 36.3 L 42.6 36.1 L 43.3 36.0 L 44.0 36.0 L 44.7 36.0 L 192.4 44.0 L 193.1 44.1 L 193.8 44.3 L 194.4 44.5 L 195.1 44.8 L 195.7 45.1 L 196.3 45.5 L 196.8 45.9 L 197.3 46.3 L 197.8 46.9 L 198.2 47.4 L 198.6 48.0 L 198.9 48.6 L 199.2 49.3 L 244.0 165.4 L 244.3 166.0 L 244.4 166.7 L 244.5 167.4 L 244.5 168.1 L 244.5 168.8 L 244.4 169.5 L 244.3 170.2 L 244.0 170.8 L 243.8 171.5 L 243.5 172.1 L 243.1 172.7 L 242.7 173.2 L 242.2 173.7 L 241.7 174.2 L 241.1 174.6 L 240.5 175.0 L 239.9 175.3 L 239.3 175.6 L 238.6 175.8 L 237.9 176.0 L 237.2 176.1 L 173.3 184.4 L 172.6 184.5 L 171.9 184.4 L 171.2 184.4 L 170.5 184.2 L 169.8 184.0 L 169.2 183.7 L 168.6 183.4 L 168.0 183.0 L 167.4 182.6 L 166.9 182.1 L 77.4 92.6 L 76.9 92.1 L 37.9 49.1 L 37.4 48.6 L 37.1 48.0 L 36.7 47.4 L 36.5 46.7 L 36.3 46.1 L 36.1 45.4 L 36.0 44.7 Z" fill="var(--faint)" opacity=".16"></path>
+<path d="M 99.0 104.7 L 99.1 104.0 L 99.2 103.3 L 99.3 102.6 L 99.5 102.0 L 99.8 101.3 L 100.1 100.7 L 100.5 100.1 L 100.9 99.6 L 101.4 99.1 L 101.9 98.6 L 102.4 98.2 L 103.0 97.8 L 103.7 97.5 L 104.3 97.2 L 105.0 97.0 L 105.6 96.8 L 106.3 96.8 L 107.0 96.7 L 107.7 96.8 L 108.4 96.8 L 109.1 97.0 L 109.8 97.2 L 126.7 103.3 L 127.4 103.6 L 239.9 160.8 L 240.5 161.2 L 241.1 161.5 L 241.7 162.0 L 242.2 162.4 L 242.7 162.9 L 243.1 163.5 L 243.5 164.1 L 243.8 164.7 L 244.0 165.4 L 244.3 166.0 L 244.4 166.7 L 244.5 167.4 L 244.5 168.1 L 244.5 168.8 L 244.4 169.5 L 244.3 170.2 L 244.0 170.8 L 243.8 171.5 L 243.5 172.1 L 243.1 172.7 L 242.7 173.2 L 242.2 173.7 L 241.7 174.2 L 241.1 174.6 L 240.5 175.0 L 239.9 175.3 L 239.3 175.6 L 238.6 175.8 L 237.9 176.0 L 237.2 176.1 L 173.3 184.4 L 172.6 184.5 L 171.9 184.4 L 171.2 184.4 L 170.5 184.2 L 169.8 184.0 L 169.2 183.7 L 168.6 183.4 L 168.0 183.0 L 167.4 182.6 L 166.9 182.1 L 166.4 181.6 L 100.9 109.9 L 100.5 109.3 L 100.1 108.7 L 99.8 108.1 L 99.5 107.5 L 99.3 106.8 L 99.2 106.1 L 99.1 105.4 Z" fill="var(--faint)" opacity=".30"></path>
+<path d="M 99.0 104.7 L 99.1 104.0 L 99.2 103.3 L 99.3 102.6 L 99.5 102.0 L 99.8 101.3 L 100.1 100.7 L 100.5 100.1 L 100.9 99.6 L 101.4 99.1 L 101.9 98.6 L 102.4 98.2 L 103.0 97.8 L 103.7 97.5 L 104.3 97.2 L 105.0 97.0 L 105.6 96.8 L 106.3 96.8 L 107.0 96.7 L 107.7 96.8 L 108.4 96.8 L 109.1 97.0 L 109.8 97.2 L 126.7 103.3 L 127.4 103.6 L 239.9 160.8 L 240.5 161.2 L 241.1 161.5 L 241.7 162.0 L 242.2 162.4 L 242.7 162.9 L 243.1 163.5 L 243.5 164.1 L 243.8 164.7 L 244.0 165.4 L 244.3 166.0 L 244.4 166.7 L 244.5 167.4 L 244.5 168.1 L 244.5 168.8 L 244.4 169.5 L 244.3 170.2 L 244.0 170.8 L 243.8 171.5 L 243.5 172.1 L 243.1 172.7 L 242.7 173.2 L 242.2 173.7 L 241.7 174.2 L 241.1 174.6 L 240.5 175.0 L 239.9 175.3 L 239.3 175.6 L 238.6 175.8 L 237.9 176.0 L 237.2 176.1 L 173.3 184.4 L 172.6 184.5 L 171.9 184.4 L 171.2 184.4 L 170.5 184.2 L 169.8 184.0 L 169.2 183.7 L 168.6 183.4 L 168.0 183.0 L 167.4 182.6 L 166.9 182.1 L 166.4 181.6 L 100.9 109.9 L 100.5 109.3 L 100.1 108.7 L 99.8 108.1 L 99.5 107.5 L 99.3 106.8 L 99.2 106.1 L 99.1 105.4 Z" fill="none" stroke="var(--faint)" stroke-width="1.2" opacity=".85"></path>
+<circle cx="236.5" cy="168.1" r="15.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="191.7" cy="52.0" r="7.2" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="170.8" cy="151.2" r="5.9" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="206.3" cy="159.3" r="5.3" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="44.0" cy="44.0" r="4.8" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="83.1" cy="86.9" r="4.3" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="149.9" cy="141.6" r="4.3" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="124.0" cy="110.8" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="172.6" cy="176.5" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="107.0" cy="104.7" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<text x="115.0" y="114.3" text-anchor="end" font-size="9.5" fill="var(--dim)">Palo Alto</text>
+<text x="159.2" y="145.1" text-anchor="start" font-size="9.5" fill="var(--dim)">Mountain View</text>
+<text x="181.7" y="154.7" text-anchor="start" font-size="9.5" fill="var(--dim)">Sunnyvale</text>
+<text x="181.6" y="180.0" text-anchor="start" font-size="9.5" fill="var(--dim)">Cupertino</text>
+<text x="216.7" y="162.8" text-anchor="start" font-size="9.5" fill="var(--dim)">Santa Clara</text>
+<text x="256.5" y="171.6" text-anchor="start" font-size="9.5" fill="var(--dim)">San Jose</text>
+<text x="98.0" y="108.2" text-anchor="end" font-size="9.5" fill="var(--dim)">Menlo Park</text>
+<text x="34.2" y="47.5" text-anchor="end" font-size="9.5" fill="var(--dim)">San Mateo</text>
+<text x="73.7" y="90.4" text-anchor="end" font-size="9.5" fill="var(--dim)">Redwood City</text>
+<text x="203.8" y="55.5" text-anchor="start" font-size="9.5" fill="var(--dim)">Fremont</text>
+<text x="0" y="16" font-size="14" font-weight="500" fill="var(--faint)">SILICON VALLEY</text>
+<text x="0" y="31" font-size="10" fill="var(--faint)">CALIFORNIA</text>
+<text x="0" y="236.5" font-size="11" fill="var(--text)">CORE 18 MI</text>
+<text x="0" y="251.5" font-size="10" fill="var(--faint)">CORE POP 1542K &#183; ALL 1962K</text>
+</g>
+<g transform="translate(315 0)">
+<path d="M 36.0 128.0 L 36.0 127.3 L 36.1 126.6 L 36.3 125.9 L 36.5 125.3 L 36.7 124.6 L 37.1 124.0 L 37.4 123.4 L 37.9 122.9 L 109.3 38.9 L 109.7 38.3 L 110.2 37.9 L 110.8 37.4 L 111.4 37.1 L 112.0 36.7 L 112.6 36.5 L 113.3 36.3 L 114.0 36.1 L 114.7 36.0 L 115.4 36.0 L 116.1 36.0 L 116.8 36.1 L 117.5 36.3 L 118.1 36.5 L 118.8 36.7 L 119.4 37.1 L 120.0 37.4 L 120.5 37.9 L 121.0 38.3 L 121.5 38.9 L 121.9 39.4 L 122.3 40.0 L 122.6 40.6 L 122.9 41.3 L 123.1 41.9 L 123.3 42.6 L 170.5 278.9 L 170.6 279.6 L 170.6 280.3 L 170.6 281.0 L 170.5 281.6 L 170.4 282.3 L 170.2 283.0 L 169.9 283.6 L 169.6 284.3 L 169.2 284.8 L 168.8 285.4 L 168.3 285.9 L 167.8 286.4 L 167.2 286.8 L 166.6 287.2 L 166.0 287.5 L 165.4 287.8 L 164.7 288.0 L 164.0 288.1 L 163.3 288.2 L 162.6 288.3 L 161.9 288.2 L 64.2 279.2 L 63.5 279.1 L 62.8 279.0 L 62.2 278.8 L 61.5 278.5 L 60.9 278.2 L 60.3 277.8 L 59.8 277.4 L 59.3 276.9 L 58.8 276.4 L 58.4 275.8 L 58.0 275.3 L 57.7 274.6 L 57.4 274.0 L 57.2 273.3 L 57.0 272.6 L 36.1 129.4 L 36.0 128.7 Z" fill="var(--rim)" opacity=".16"></path>
+<path d="M 36.0 128.0 L 36.0 127.3 L 36.1 126.6 L 36.3 125.9 L 36.5 125.3 L 36.7 124.6 L 37.1 124.0 L 37.4 123.4 L 37.9 122.9 L 38.3 122.4 L 38.9 121.9 L 39.4 121.5 L 40.0 121.1 L 40.6 120.8 L 41.3 120.5 L 41.9 120.3 L 42.6 120.1 L 43.3 120.0 L 44.0 120.0 L 44.7 120.0 L 45.4 120.1 L 46.1 120.3 L 46.7 120.5 L 47.4 120.8 L 48.0 121.1 L 48.6 121.5 L 49.1 121.9 L 49.7 122.4 L 50.1 122.9 L 168.8 275.1 L 169.2 275.7 L 169.6 276.3 L 169.9 276.9 L 170.2 277.5 L 170.4 278.2 L 170.5 278.9 L 170.6 279.6 L 170.6 280.3 L 170.6 281.0 L 170.5 281.6 L 170.4 282.3 L 170.2 283.0 L 169.9 283.6 L 169.6 284.3 L 169.2 284.8 L 168.8 285.4 L 168.3 285.9 L 167.8 286.4 L 167.2 286.8 L 166.6 287.2 L 166.0 287.5 L 165.4 287.8 L 164.7 288.0 L 164.0 288.1 L 163.3 288.2 L 162.6 288.3 L 161.9 288.2 L 64.2 279.2 L 63.5 279.1 L 62.8 279.0 L 62.2 278.8 L 61.5 278.5 L 60.9 278.2 L 60.3 277.8 L 59.8 277.4 L 59.3 276.9 L 58.8 276.4 L 58.4 275.8 L 58.0 275.3 L 57.7 274.6 L 57.4 274.0 L 57.2 273.3 L 57.0 272.6 L 36.1 129.4 L 36.0 128.7 Z" fill="var(--rim)" opacity=".30"></path>
+<path d="M 36.0 128.0 L 36.0 127.3 L 36.1 126.6 L 36.3 125.9 L 36.5 125.3 L 36.7 124.6 L 37.1 124.0 L 37.4 123.4 L 37.9 122.9 L 38.3 122.4 L 38.9 121.9 L 39.4 121.5 L 40.0 121.1 L 40.6 120.8 L 41.3 120.5 L 41.9 120.3 L 42.6 120.1 L 43.3 120.0 L 44.0 120.0 L 44.7 120.0 L 45.4 120.1 L 46.1 120.3 L 46.7 120.5 L 47.4 120.8 L 48.0 121.1 L 48.6 121.5 L 49.1 121.9 L 49.7 122.4 L 50.1 122.9 L 168.8 275.1 L 169.2 275.7 L 169.6 276.3 L 169.9 276.9 L 170.2 277.5 L 170.4 278.2 L 170.5 278.9 L 170.6 279.6 L 170.6 280.3 L 170.6 281.0 L 170.5 281.6 L 170.4 282.3 L 170.2 283.0 L 169.9 283.6 L 169.6 284.3 L 169.2 284.8 L 168.8 285.4 L 168.3 285.9 L 167.8 286.4 L 167.2 286.8 L 166.6 287.2 L 166.0 287.5 L 165.4 287.8 L 164.7 288.0 L 164.0 288.1 L 163.3 288.2 L 162.6 288.3 L 161.9 288.2 L 64.2 279.2 L 63.5 279.1 L 62.8 279.0 L 62.2 278.8 L 61.5 278.5 L 60.9 278.2 L 60.3 277.8 L 59.8 277.4 L 59.3 276.9 L 58.8 276.4 L 58.4 275.8 L 58.0 275.3 L 57.7 274.6 L 57.4 274.0 L 57.2 273.3 L 57.0 272.6 L 36.1 129.4 L 36.0 128.7 Z" fill="none" stroke="var(--rim)" stroke-width="1.2" opacity=".85"></path>
+<circle cx="162.6" cy="280.3" r="12.6" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="121.5" cy="245.1" r="5.3" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="142.8" cy="226.5" r="5.1" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="44.0" cy="128.0" r="4.9" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="115.4" cy="44.0" r="4.7" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="121.8" cy="180.2" r="4.1" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="120.6" cy="139.8" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="102.7" cy="148.5" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="64.9" cy="271.3" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<text x="34.1" y="131.5" text-anchor="end" font-size="9.5" fill="var(--dim)">Boulder</text>
+<text x="55.9" y="274.8" text-anchor="end" font-size="9.5" fill="var(--dim)">Golden</text>
+<text x="131.7" y="248.6" text-anchor="start" font-size="9.5" fill="var(--dim)">Arvada</text>
+<text x="180.2" y="283.8" text-anchor="start" font-size="9.5" fill="var(--dim)">Denver</text>
+<text x="129.6" y="143.3" text-anchor="start" font-size="9.5" fill="var(--dim)">Lafayette</text>
+<text x="93.7" y="152.0" text-anchor="end" font-size="9.5" fill="var(--dim)">Louisville</text>
+<text x="130.9" y="183.7" text-anchor="start" font-size="9.5" fill="var(--dim)">Broomfield</text>
+<text x="152.9" y="230.0" text-anchor="start" font-size="9.5" fill="var(--dim)">Westminster</text>
+<text x="125.1" y="47.5" text-anchor="start" font-size="9.5" fill="var(--dim)">Longmont</text>
+<text x="0" y="16" font-size="14" font-weight="500" fill="var(--rim)">PHOTON MOUNTAIN</text>
+<text x="0" y="31" font-size="10" fill="var(--faint)">FRONT RANGE, METRO</text>
+<text x="0" y="340.3" font-size="11" fill="var(--text)">CORE 24 MI</text>
+<text x="0" y="355.3" font-size="10" fill="var(--faint)">CORE POP 969K &#183; ALL 1310K</text>
+</g>
+<g transform="translate(555 0)">
+<path d="M 36.0 109.1 L 36.0 108.4 L 36.1 107.7 L 36.3 107.1 L 36.5 106.4 L 36.7 105.8 L 68.6 40.6 L 68.9 40.0 L 69.3 39.4 L 69.7 38.9 L 70.2 38.3 L 70.7 37.9 L 71.2 37.4 L 71.8 37.1 L 72.5 36.7 L 73.1 36.5 L 73.8 36.3 L 74.4 36.1 L 75.1 36.0 L 75.8 36.0 L 76.5 36.0 L 77.2 36.1 L 77.9 36.3 L 78.6 36.5 L 79.2 36.7 L 79.8 37.1 L 80.4 37.4 L 81.0 37.9 L 81.5 38.3 L 82.0 38.9 L 207.7 193.4 L 208.2 194.0 L 208.5 194.6 L 208.9 195.2 L 209.1 195.8 L 209.3 196.5 L 216.3 222.1 L 216.5 222.8 L 216.5 223.5 L 216.6 224.2 L 216.5 224.9 L 216.5 225.6 L 216.3 226.2 L 216.1 226.9 L 215.8 227.6 L 215.5 228.2 L 215.1 228.8 L 214.7 229.3 L 214.2 229.8 L 213.7 230.3 L 213.2 230.7 L 212.6 231.1 L 212.0 231.4 L 211.3 231.7 L 210.7 231.9 L 118.4 254.0 L 47.5 269.8 L 46.8 269.9 L 46.1 270.0 L 45.4 270.0 L 44.7 270.0 L 44.0 269.9 L 43.3 269.8 L 42.6 269.6 L 42.0 269.3 L 41.4 269.0 L 40.8 268.6 L 40.2 268.2 L 39.7 267.7 L 39.3 267.2 L 38.8 266.6 L 38.5 266.0 L 38.1 265.4 L 37.9 264.8 L 37.7 264.1 L 37.5 263.4 L 37.4 262.7 L 37.4 262.0 Z" fill="var(--plasma)" opacity=".16"></path>
+<path d="M 36.0 109.1 L 36.0 108.4 L 36.1 107.7 L 36.3 107.1 L 36.5 106.4 L 36.7 105.8 L 37.1 105.1 L 37.4 104.5 L 37.9 104.0 L 38.3 103.5 L 38.9 103.0 L 39.4 102.6 L 40.0 102.2 L 40.6 101.9 L 41.3 101.6 L 41.9 101.4 L 42.6 101.3 L 43.3 101.2 L 44.0 101.1 L 44.7 101.2 L 45.4 101.3 L 46.1 101.4 L 46.7 101.6 L 47.4 101.9 L 48.0 102.2 L 205.6 191.6 L 206.2 192.0 L 206.8 192.4 L 207.3 192.9 L 207.7 193.4 L 208.2 194.0 L 208.5 194.6 L 208.9 195.2 L 209.1 195.8 L 209.3 196.5 L 209.5 197.2 L 209.6 197.9 L 209.6 198.6 L 209.6 199.3 L 209.5 199.9 L 209.3 200.6 L 209.1 201.3 L 208.9 201.9 L 208.5 202.6 L 208.2 203.1 L 207.7 203.7 L 207.3 204.2 L 206.8 204.7 L 206.2 205.1 L 205.6 205.5 L 205.0 205.8 L 204.3 206.1 L 203.7 206.3 L 203.0 206.4 L 202.3 206.5 L 201.6 206.6 L 200.9 206.5 L 200.2 206.4 L 199.5 206.3 L 198.9 206.1 L 118.1 176.2 L 117.5 175.9 L 116.9 175.6 L 66.7 146.9 L 66.1 146.5 L 65.6 146.1 L 65.1 145.6 L 64.6 145.1 L 37.9 114.3 L 37.4 113.7 L 37.1 113.1 L 36.7 112.5 L 36.5 111.9 L 36.3 111.2 L 36.1 110.5 L 36.0 109.8 Z" fill="var(--plasma)" opacity=".30"></path>
+<path d="M 36.0 109.1 L 36.0 108.4 L 36.1 107.7 L 36.3 107.1 L 36.5 106.4 L 36.7 105.8 L 37.1 105.1 L 37.4 104.5 L 37.9 104.0 L 38.3 103.5 L 38.9 103.0 L 39.4 102.6 L 40.0 102.2 L 40.6 101.9 L 41.3 101.6 L 41.9 101.4 L 42.6 101.3 L 43.3 101.2 L 44.0 101.1 L 44.7 101.2 L 45.4 101.3 L 46.1 101.4 L 46.7 101.6 L 47.4 101.9 L 48.0 102.2 L 205.6 191.6 L 206.2 192.0 L 206.8 192.4 L 207.3 192.9 L 207.7 193.4 L 208.2 194.0 L 208.5 194.6 L 208.9 195.2 L 209.1 195.8 L 209.3 196.5 L 209.5 197.2 L 209.6 197.9 L 209.6 198.6 L 209.6 199.3 L 209.5 199.9 L 209.3 200.6 L 209.1 201.3 L 208.9 201.9 L 208.5 202.6 L 208.2 203.1 L 207.7 203.7 L 207.3 204.2 L 206.8 204.7 L 206.2 205.1 L 205.6 205.5 L 205.0 205.8 L 204.3 206.1 L 203.7 206.3 L 203.0 206.4 L 202.3 206.5 L 201.6 206.6 L 200.9 206.5 L 200.2 206.4 L 199.5 206.3 L 198.9 206.1 L 118.1 176.2 L 117.5 175.9 L 116.9 175.6 L 66.7 146.9 L 66.1 146.5 L 65.6 146.1 L 65.1 145.6 L 64.6 145.1 L 37.9 114.3 L 37.4 113.7 L 37.1 113.1 L 36.7 112.5 L 36.5 111.9 L 36.3 111.2 L 36.1 110.5 L 36.0 109.8 Z" fill="none" stroke="var(--plasma)" stroke-width="1.2" opacity=".85"></path>
+<circle cx="44.0" cy="109.1" r="6.1" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="201.6" cy="198.6" r="4.9" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="48.0" cy="212.6" r="4.1" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="120.9" cy="168.6" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="208.6" cy="224.2" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="116.3" cy="246.3" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="75.8" cy="44.0" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="45.4" cy="262.0" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="141.9" cy="142.4" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<circle cx="70.7" cy="140.0" r="4.0" fill="var(--text)" stroke="var(--surface)" stroke-width="1.2"></circle>
+<text x="32.9" y="112.6" text-anchor="end" font-size="9.5" fill="var(--dim)">Fort Collins</text>
+<text x="61.7" y="143.5" text-anchor="end" font-size="9.5" fill="var(--dim)">Timnath</text>
+<text x="129.9" y="172.1" text-anchor="start" font-size="9.5" fill="var(--dim)">Windsor</text>
+<text x="211.5" y="202.1" text-anchor="start" font-size="9.5" fill="var(--dim)">Greeley</text>
+<text x="38.9" y="216.1" text-anchor="end" font-size="9.5" fill="var(--dim)">Loveland</text>
+<text x="66.8" y="47.5" text-anchor="end" font-size="9.5" fill="var(--dim)">Wellington</text>
+<text x="150.9" y="145.9" text-anchor="start" font-size="9.5" fill="var(--dim)">Severance</text>
+<text x="217.6" y="227.7" text-anchor="start" font-size="9.5" fill="var(--dim)">Evans</text>
+<text x="125.3" y="249.8" text-anchor="start" font-size="9.5" fill="var(--dim)">Johnstown</text>
+<text x="36.4" y="265.5" text-anchor="end" font-size="9.5" fill="var(--dim)">Berthoud</text>
+<text x="0" y="16" font-size="14" font-weight="500" fill="var(--plasma)">FUSION CANYON</text>
+<text x="0" y="31" font-size="10" fill="var(--faint)">NORTHERN COLORADO</text>
+<text x="0" y="322.0" font-size="11" fill="var(--text)">CORE 23 MI</text>
+<text x="0" y="337.0" font-size="10" fill="var(--faint)">CORE POP 318K &#183; ALL 463K</text>
+</g>
+<g transform="translate(0 358)"><rect x="0" y="0" width="80" height="3" fill="var(--dim)"></rect><text x="87" y="4" font-size="10" fill="var(--faint)">10 MILES, SAME SCALE ON ALL THREE</text></g>
+</svg>
+  </div>
+  <div class="row r-3">
+    <div><p class="big" style="font-size:clamp(1.6rem,4vw,2.3rem);color:var(--faint);">18 mi</p><p class="sub">Silicon Valley core, Menlo Park to San Jose. 1542K in the core.</p></div>
+    <div><p class="big" style="font-size:clamp(1.6rem,4vw,2.3rem);color:var(--rim);">24 mi</p><p class="sub">Photon Mountain core, Boulder to Denver. 969K in the core.</p></div>
+    <div><p class="big" style="font-size:clamp(1.6rem,4vw,2.3rem);color:var(--plasma);">23 mi</p><p class="sub">Fusion Canyon core, Fort Collins to Greeley. 318K in the core.</p></div>
+  </div>
+  <p class="cap">
+    Method ported unchanged from the Photon Mountain comparison map: 8 px per mile on every panel,
+    equirectangular projection, two rings drawn as buffered convex hulls, dot area scaled to 2020
+    census population. The three cores land within six miles of each other. The Fusion Canyon city
+    set is a proposal, not a locked roster.
+  </p>
+</section>
+
+<section class="card">
+  <div>
+    <p class="eyebrow">The thesis</p>
+    <h2>Same box. A quarter full. That is the whole project.</h2>
+  </div>
+  <div style="overflow-x:auto;">
+    <svg viewBox="0 0 1000 320" style="width:100%;min-width:700px;" role="img" aria-label="The Fusion Canyon core covers 75 square miles against Silicon Valley's 84, nearly the same container. It holds 317,808 people against 1,541,801, so it is about a quarter full.">
+<text x="0" y="14" font-size="10.5" fill="var(--faint)">SILICON VALLEY CORE</text>
+<text x="0" y="30" font-size="15" font-weight="500" fill="var(--text)">84 SQ MI</text>
+<rect x="0" y="71.1" width="118.9" height="118.9" fill="var(--faint)" opacity=".30"></rect>
+<rect x="0" y="71.1" width="118.9" height="118.9" fill="none" stroke="var(--faint)" stroke-width="1.5"></rect>
+<text x="0" y="208" font-size="11" fill="var(--dim)">1542K PEOPLE</text>
+<text x="0" y="223" font-size="11" fill="var(--faint)">18,419 / SQ MI</text>
+<text x="200" y="14" font-size="10.5" fill="var(--plasma)">FUSION CANYON CORE</text>
+<text x="200" y="30" font-size="15" font-weight="500" fill="var(--text)">75 SQ MI</text>
+<rect x="200" y="77.7" width="112.3" height="112.3" fill="var(--plasma)" opacity=".10"></rect>
+<rect x="200" y="164.0" width="112.3" height="26.0" fill="var(--plasma)" opacity=".75"></rect>
+<rect x="200" y="77.7" width="112.3" height="112.3" fill="none" stroke="var(--plasma)" stroke-width="1.5"></rect>
+<text x="200" y="208" font-size="11" fill="var(--dim)">318K PEOPLE</text>
+<text x="200" y="223" font-size="11" fill="var(--plasma)">4,262 / SQ MI</text>
+<text x="324" y="158" font-size="11" fill="var(--plasma)">23% FULL</text>
+<path d="M318 164.0 L352 164.0" stroke="var(--plasma)" stroke-width="1" stroke-dasharray="3 3"></path>
+<text x="560" y="14" font-size="10.5" fill="var(--faint)">THE SAME 75 SQ MI, FILLED THREE WAYS</text>
+<text x="560" y="44" font-size="10.5" fill="var(--faint)">TODAY</text>
+<rect x="560" y="52" width="92.6" height="26" fill="var(--plasma)"></rect>
+<text x="662" y="70" font-size="13" font-weight="500" fill="var(--plasma)">318K</text>
+<text x="560" y="102" font-size="10.5" fill="var(--faint)">AT PHOTON MOUNTAIN DENSITY</text>
+<rect x="560" y="110" width="127.1" height="26" fill="var(--rim)"></rect>
+<text x="696" y="128" font-size="13" font-weight="500" fill="var(--rim)">436K</text>
+<text x="560" y="160" font-size="10.5" fill="var(--faint)">AT SILICON VALLEY DENSITY</text>
+<rect x="560" y="168" width="400.0" height="26" fill="var(--faint)"></rect>
+<text x="969" y="186" font-size="13" font-weight="500" fill="var(--faint)">1,373K</text>
+<path d="M560 232 L960 232" stroke="var(--edge)" stroke-width="1"></path>
+<text x="560" y="262" font-size="11" fill="var(--faint)">ROOM INSIDE THE FOOTPRINT THAT ALREADY EXISTS</text>
+<text x="560" y="300" font-size="34" font-weight="500" fill="var(--plasma)">+1,055,520</text>
+</svg>
+  </div>
+  <p class="cap">
+    The container is already the right size. Silicon Valley's core covers 84 sq mi and the
+    Fusion Canyon core covers 75, a difference of 11 percent.
+    What differs is how full it is: 18,419 people per sq mi against 4,262, a factor
+    of 4.3. Fill the ground Fusion Canyon already occupies at Silicon Valley's
+    density and it holds 1.37 million. Density is the deliverable, and the room for
+    it is 1,055,520 people.
+  </p>
+  <p class="cap">
+    Two things keep this honest. Silicon Valley's hull wraps part of San Francisco Bay, which is open
+    water, so its density over land is higher than 18,419 and the target above is a floor
+    rather than a ceiling. And the nearer rung matters more than the far one: Photon Mountain's
+    density in this footprint is 436K, which is 1.4 times today rather
+    than 4.3.
+  </p>
+</section>
+<!--/COMPARISON-PANEL-->
+
+<!-- ===================== THE ASK ===================== -->
+<div class="row r-3">
+  <section class="card" style="border-top:3px solid var(--plasma);">
+    <p class="eyebrow">Builders</p>
+    <svg viewBox="0 0 120 60" style="width:88px;" role="img" aria-label="Icon of a wrench over a grid, representing manufacturing">
+      <g stroke="var(--plasma)" stroke-width="3" fill="none">
+        <rect x="6" y="10" width="40" height="40"></rect>
+        <path d="M6 30 L46 30 M26 10 L26 50"></path>
+        <path d="M70 46 L102 14 M64 52 a 9 9 0 1 0 12 -12"></path>
+      </g>
+    </svg>
+    <p class="sub">Four of six links are open. Most are manufacturing, not plasma physics.</p>
+  </section>
+  <section class="card" style="border-top:3px solid var(--rim);">
+    <p class="eyebrow r">Capital</p>
+    <svg viewBox="0 0 120 60" style="width:88px;" role="img" aria-label="Icon of ascending bars, representing investment">
+      <g fill="var(--rim)">
+        <rect x="6" y="38" width="18" height="18"></rect>
+        <rect x="32" y="26" width="18" height="30"></rect>
+        <rect x="58" y="14" width="18" height="42"></rect>
+      </g>
+      <path d="M86 46 L110 16 M100 16 L110 16 L110 26" fill="none" stroke="var(--rim)" stroke-width="3"></path>
+    </svg>
+    <p class="sub">Picks and shovels, with a $150M anchor tenant already under construction.</p>
+  </section>
+  <section class="card" style="border-top:3px solid var(--faint);">
+    <p class="eyebrow n">Civic</p>
+    <svg viewBox="0 0 120 60" style="width:88px;" role="img" aria-label="Icon of a calendar and a water drop, representing permitting and water planning">
+      <g stroke="var(--faint)" stroke-width="3" fill="none">
+        <rect x="6" y="14" width="44" height="40"></rect>
+        <path d="M6 26 L50 26 M18 8 L18 18 M38 8 L38 18"></path>
+        <path d="M92 12 C 108 32, 110 52, 92 52 C 74 52, 76 32, 92 12 Z"></path>
+      </g>
+    </svg>
+    <p class="sub">A decade of notice. Siting, water and permitting can be settled before anyone waits.</p>
+  </section>
+</div>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <p class="cap">
+    Fusion Canyon &middot; concept draft v0 &middot; 22 September 2026. A place brand proposal, not a verified
+    corridor register. Name, tagline, mark and palette are proposals awaiting a decision. Nothing here
+    is external facing yet. Maps are schematic; elevations are approximate.
+  </p>
+  <details>
+    <summary>Sources, checked 22 September 2026</summary>
+    <div class="cite">
+      <span>ALEPH: 0.85 PW, 45 fs, 3.3 Hz burst. <a href="https://lasernetus.org/facilities/abl">LaserNetUS, Advanced Beam Laboratory</a>; <a href="https://lasers.colostate.edu/facilities/">CSU L-ALEPH</a>.</span>
+      <span>ATLAS: $150M, three multi-petawatt lasers, 10 Hz. <a href="https://source.colostate.edu/csu-marvel-fusion-groundbreaking-laser-facility/">Colorado State University</a>.</span>
+      <span>590 tons steel, 7,355 cu yd concrete, Dec 2026 substantial completion. <a href="https://source.colostate.edu/csu-tops-out-one-of-worlds-most-advanced-laser-research-facilities-on-track-for-2026-completion/">CSU</a>; <a href="https://www.mccarthy.com/insights/csu-breaks-ground-on-advanced-technology-lasers-for-applications-and-science-atlas">McCarthy</a>.</span>
+      <span>RISE hub: $16M over four years, CSU and SLAC co-led. <a href="https://www.energy.gov/articles/doe-announces-42-million-inertial-fusion-energy-hubs">U.S. Department of Energy</a>.</span>
+      <span>Marvel Fusion: ~75 staff, ~&euro;385M raised, Munich and Fort Collins. <a href="https://www.marvelfusion.com/">Marvel Fusion</a>.</span>
+      <span>Rawhide Unit 1: 280 MW, coal generation ends by 2030; 100% noncarbon policy. <a href="https://prpa.org/news-releases/platte-river-to-retire-rawhide-unit-1-by-2030/">Platte River Power Authority</a>.</span>
+      <span>Colorado, Marvel Fusion and Siemens Energy letter of intent, June 2026. <a href="https://governorsoffice.colorado.gov/governor/news/governor-polis-celebrates-colorado-fusion-week-highlights-colorados-leadership-fusion-energy">Office of the Governor</a>.</span>
+      <span>Xcimer Energy, Denver. <a href="https://xcimer.energy/news/xcimer-energy-announces-the-start-of-operations-for-phoenix-a-prototype-system-for-industrial-scale-laser-fusion-architecture/">Xcimer Energy</a>.</span>
+      <span>Derived by arithmetic, not claimed by any vendor: 864,000 shots per day at 10 Hz; 700,000 years as the ratio of one second to 45 fs; 3,000,000&times; as the ratio of 0.85 PW to 280 MW.</span>
+    </div>
+  </details>
+</footer>
+
+</div>
+
+</body></html>
