@@ -4,16 +4,11 @@
 
 ## Active
 
-- **FC-1 · Go public and open to contributors.** Started 2026-11-12. Per the owner, the goal is "everything that we've been working on with Fusion Canyon live in a repo so contributors ... can start contributing." It follows Photon Mountain's PT-9.
-  1. Restore the surviving work. The vision page is restored. The corridor map is still on Felt only.
-  2. Fact gate the page against the source record.
-  3. Add contributor files on top of the CC0 licensing PR.
-  4. Add required checks, then flip the repo to public.
-  5. Turn on public-only security settings.
-  6. Seed good first issues and set up weekly triage.
+None. Next: work the good first issues and the owner's queue below.
 
 ## Blocked
 
+- **Secret scanning can be switched off again.** The repo is still attached to the org's `cs-free` code-security configuration, which turned scanning off on Space Peak. Detaching needs a token with the `admin:org` scope, which needs the owner's sign-in. Scanning and push protection read as enabled on 2026-11-12.
 - **Corridor map export.** The 16-site map is at `https://felt.com/map/Fusion-Canyon-corridor-draft-v0-tTmfg7iZTimB8wraqY9A07D`. Felt's MCP is not in the workspace's current plan, so Claude cannot read the layers.
   - **Route without spending:** an editor exports each layer as GeoJSON from the Felt app. It lands in `03_deliverables/maps/`.
   - **Before CC0 applies,** check that no geometry traces OpenStreetMap. ODbL data cannot be relicensed.
@@ -25,6 +20,12 @@
 
 ## Done
 
+- 2026-11-12 · **FC-1 · Public and open to contributors.**
+  - The repo is public, with Pages on (`https://colorado-startups.github.io/fusion-canyon/`) and Discussions on.
+  - A ruleset requires `ci / ci-ok` and DCO, squash only. Fork runs wait for approval.
+  - Private vulnerability reporting, secret scanning and push protection are on.
+  - CODEOWNERS names the new `@Colorado-Startups/maintainers` team.
+  - Five good first issues are open (#5 to #9).
 - 2026-11-12 · **FC-1 steps 2 and 3 · Fact gate and Git Crafter setup.**
   - Every figure on the page was rechecked against a source read on 2026-11-12. ATLAS is now $160M, per CSU (May 2026), the ALEPH pulse is 30 fs at 800 nm (LaserNetUS), and Marvel Fusion's headcount is 120+ (the company).
   - The topping-out date moved to May 2026, and the comparison core is now named. Each change has a row in the source record.
