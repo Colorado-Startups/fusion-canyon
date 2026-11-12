@@ -7,6 +7,7 @@ The Colorado Startups region for Fort Collins, Loveland, Windsor and Greeley: a 
 | Start here | What it is |
 |---|---|
 | [`03_deliverables/fusion_canyon_vision.html`](03_deliverables/fusion_canyon_vision.html) | The vision page: what operates today, what opens next, and what is honestly far off |
+| [Corridor map](https://colorado-startups.github.io/fusion-canyon/map/) | 14 sites and the proposed boundary, with terrain, each pin linked to its source. Data: [`03_deliverables/map/fusion_canyon_corridor.geojson`](03_deliverables/map/fusion_canyon_corridor.geojson) |
 | [`02_substance/`](02_substance/) | The source record: one row and one link per claim |
 | [`project_context.md`](project_context.md) | The one-page brief and its honesty rules |
 | [Quality, Speed and Consumption page](https://colorado-startups.github.io/fusion-canyon/) and [Process page](https://colorado-startups.github.io/fusion-canyon/process.html) | How the repo scores, built by [Git Crafter](https://github.com/SoulCraft-Org/git-crafter) |

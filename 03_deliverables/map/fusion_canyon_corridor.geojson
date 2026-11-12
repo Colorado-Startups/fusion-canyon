@@ -1,0 +1,420 @@
+{
+ "type": "FeatureCollection",
+ "name": "Fusion Canyon corridor",
+ "license": "CC0-1.0",
+ "sources_checked": "2026-11-12",
+ "note": "Coordinates from the US Census Geocoder and TIGERweb, USGS (GNIS and NWIS) and EIA, never from OpenStreetMap.",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "ALEPH laser, CSU Advanced Beam Laboratory",
+    "category": "Operating",
+    "town": "Fort Collins",
+    "note": "CSU's ALEPH laser sits in the Advanced Beam Laboratory on the Foothills Campus, which CSU places at 4325 Laporte Avenue.",
+    "source_url": "https://lasers.colostate.edu/maps-directions/",
+    "address": "4325 Laporte Avenue, Fort Collins, CO 80521",
+    "coord_source": "census_geocoder",
+    "coord_detail": "Matched 4325 LAPORTE AVE, FORT COLLINS, CO, 80521 (TIGER line 650291438, right side); street interpolation"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.1558,
+     40.59007
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Advanced Energy, Fort Collins site",
+    "category": "Operating",
+    "town": "Fort Collins",
+    "note": "Advanced Energy's FY2024 10-K lists Fort Collins as a leased research and development, distribution, sales and service site, with corporate headquarters in Denver.",
+    "source_url": "https://www.sec.gov/Archives/edgar/data/927003/000155837025001038/aeis-20241231x10k.htm",
+    "address": "1625 Sharp Point Drive, Fort Collins, CO 80525",
+    "coord_source": "census_geocoder",
+    "coord_detail": "Matched 1625 SHARP POINT DR, FORT COLLINS, CO, 80525 (TIGER line 647356178, left side). Address from AE supplier portal, https://supplierportal.advanced-energy.com/contact-us, which still labels it World Headquarters"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.02979,
+     40.56654
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Woodward, global headquarters",
+    "category": "Operating",
+    "town": "Fort Collins",
+    "note": "Woodward lists its corporate address as 1081 Woodward Way in Fort Collins.",
+    "source_url": "https://www.woodward.com/en/contact-us",
+    "address": "1081 Woodward Way, Fort Collins, CO 80524",
+    "coord_source": "census_geocoder",
+    "coord_detail": "Matched 1081 WOODWARD WAY, FORT COLLINS, CO, 80524 (TIGER line 649766794, right side)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.05741,
+     40.58673
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Broadcom, Fort Collins",
+    "category": "Operating",
+    "town": "Fort Collins",
+    "note": "Broadcom lists a Fort Collins location on Ziegler Road among its company locations.",
+    "source_url": "https://www.broadcom.com/company/contact/locations",
+    "address": "4380 Ziegler Road, Fort Collins, CO 80525",
+    "coord_source": "census_geocoder",
+    "coord_detail": "Matched 4380 ZIEGLER RD, FORT COLLINS, CO, 80525 (TIGER line 640625555, left side)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.02022,
+     40.52563
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "ATLAS facility, CSU Foothills Campus",
+    "category": "Opening 2026",
+    "town": "Fort Collins",
+    "note": "CSU gave 4203 Laporte Avenue as the ATLAS construction site for its April 24, 2026 topping-out event; it is a site address, not a confirmed building address.",
+    "source_url": "https://events.colostate.edu/en/8XFV416/g/4p445R4Em5/atlas-topping-out-celebration-4a8VVH7JCP/overview",
+    "address": "4203 Laporte Avenue, Fort Collins, CO 80521",
+    "coord_source": "census_geocoder",
+    "coord_detail": "Matched 4203 LAPORTE AVE, FORT COLLINS, CO, 80521 (TIGER line 650291441, right side); street interpolation, so the point sits on Laporte Avenue, not on the building"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.1541,
+     40.59
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Rawhide Energy Station",
+    "category": "Changing by 2030",
+    "town": "Wellington",
+    "note": "Platte River says Rawhide Unit 1, its 280 MW coal unit, will be removed from its energy mix by Dec. 31, 2029.",
+    "source_url": "https://prpa.org/generation/rawhide-energy-station/",
+    "address": "2700 East County Road 82, Wellington, CO 80549",
+    "coord_source": "eia",
+    "coord_detail": "EIA plant code 6761, Latitude 40.860905, Longitude -105.021207, period 202502, source EIA-860, EIA-860M and EIA-923; read from the Federal_User_Community layer Power_Plants_in_the_US (credited to EIA). Census geocoder found no match for the EIA street address"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.02121,
+     40.86091
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Mouth of Poudre Canyon",
+    "category": "Landform",
+    "town": "Laporte (near Fort Collins)",
+    "note": "USGS streamgage 06752000 is named Cache la Poudre River at mouth of canyon near Fort Collins, and USGS lists its altitude as 5,220 ft (NGVD29).",
+    "source_url": "https://waterservices.usgs.gov/nwis/site/?format=rdb&sites=06752000&siteOutput=expanded",
+    "address": null,
+    "coord_source": "owner_published",
+    "coord_detail": "USGS NWIS site 06752000, dec_lat_va 40.6644262, dec_long_va -105.2244271 (NAD83; original NAD27 403952 / 1051326). GNIS has no Poudre Canyon valley feature"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.22443,
+     40.66443
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Horsetooth Reservoir",
+    "category": "Landform",
+    "town": "Fort Collins (west)",
+    "note": "USGS GNIS lists Horsetooth Reservoir as a reservoir in Larimer County.",
+    "source_url": "https://carto.nationalmap.gov/arcgis/rest/services/geonames/MapServer/7/query?where=gaz_id%3D177416&outFields=*&outSR=4326&f=json",
+    "address": null,
+    "coord_source": "gnis",
+    "coord_detail": "GNIS feature ID 177416, class Reservoir, Larimer County"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.15949,
+     40.55827
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Xcimer Energy",
+    "category": "Context",
+    "town": "Denver",
+    "note": "Xcimer says its Phoenix laser is up and running in its Denver laser bay.",
+    "source_url": "https://xcimer.energy/",
+    "address": "10325 East 47th Ave., Denver, CO 80238",
+    "coord_source": "census_geocoder",
+    "coord_detail": "Matched 10325 E 47TH AVE, DENVER, CO, 80238 (TIGER line 606059896, left side)",
+    "far": true
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -104.86843,
+     39.78257
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Colorado State University, main campus",
+    "category": "Context",
+    "town": "Fort Collins",
+    "note": "CSU's Administration Building on the main campus is at 900 Oval Drive.",
+    "source_url": "https://www.budgets.colostate.edu/Staff_Lists/Budgets_Staff.aspx",
+    "address": "900 Oval Drive, Fort Collins, CO 80521",
+    "coord_source": "census_geocoder",
+    "coord_detail": "Matched 900 OVAL DR, FORT COLLINS, CO, 80521 (TIGER line 188491086, right side). CSU gives ZIP 80523-1080 for mail; 80521 used for the street match"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.0807,
+     40.57737
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "University of Northern Colorado",
+    "category": "Context",
+    "town": "Greeley",
+    "note": "UNC lists its address as 501 20th St. in Greeley.",
+    "source_url": "https://www.unco.edu/",
+    "address": "501 20th St., Greeley, CO 80639",
+    "coord_source": "census_geocoder",
+    "coord_detail": "Matched 501 20TH ST, GREELEY, CO, 80631 (TIGER line 188677873, right side); Census returned ZIP 80631, UNC uses 80639"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -104.68485,
+     40.40609
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Kaufman & Robinson (KRI)",
+    "category": "Context",
+    "town": "Fort Collins",
+    "note": "KRI designs and manufactures broad-beam ion sources, plasma sources and power supplies, and lists photonics, lasers and precision optics among its applications.",
+    "source_url": "https://ionsources.com/contact-us/",
+    "address": "1330 Blue Spruce Drive, Fort Collins, CO 80524",
+    "coord_source": "census_geocoder",
+    "coord_detail": "Matched 1330 BLUE SPRUCE DR, FORT COLLINS, CO, 80524 (TIGER line 188489962, right side)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.07169,
+     40.60588
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Intlvac Thin Film Corporation",
+    "category": "Context",
+    "town": "Fort Collins",
+    "note": "Intlvac lists its US address in Fort Collins and sells etch, evaporation and sputter coating systems to precision optics and photonics markets.",
+    "source_url": "https://www.intlvac.com/en-us/about-us/contact",
+    "address": "1401 Duff Drive, Unit 600, Fort Collins, CO 80524",
+    "coord_source": "census_geocoder",
+    "coord_detail": "Matched 1401 DUFF DR, FORT COLLINS, CO, 80524 (TIGER line 653309212, right side); unit number dropped for matching"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.0507,
+     40.58949
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Shanghai Optics, Midwest Office",
+    "category": "Context",
+    "town": "Loveland",
+    "note": "Shanghai Optics, a custom optics maker headquartered in Metuchen, New Jersey, lists a Midwest Office in Loveland.",
+    "source_url": "https://www.shanghai-optics.com/contact-us/",
+    "address": "1151 Eagle Drive, Loveland, CO 80537",
+    "coord_source": "census_geocoder",
+    "coord_detail": "Matched 1151 EAGLE DR, LOVELAND, CO, 80537 (TIGER line 188552109, right side)"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -105.09798,
+     40.38057
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "name": "Corridor boundary (proposed)",
+    "category": "Boundary",
+    "note": "Convex hull of the 2020 Census incorporated places of Fort Collins, Loveland, Windsor and Greeley. A proposal, not a legal line.",
+    "source_url": "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/25",
+    "coord_source": "census_tigerweb",
+    "coord_detail": "Census 2020 Incorporated Places, GEOIDs 0827425, 0846465, 0885485, 0832155"
+   },
+   "geometry": {
+    "type": "Polygon",
+    "coordinates": [
+     [
+      [
+       -105.15962,
+       40.39727
+      ],
+      [
+       -105.15706,
+       40.38941
+      ],
+      [
+       -105.1526,
+       40.38289
+      ],
+      [
+       -105.1515,
+       40.38152
+      ],
+      [
+       -105.15111,
+       40.38109
+      ],
+      [
+       -105.07467,
+       40.34901
+      ],
+      [
+       -105.07363,
+       40.34897
+      ],
+      [
+       -105.06411,
+       40.3493
+      ],
+      [
+       -104.66836,
+       40.38466
+      ],
+      [
+       -104.6519,
+       40.39414
+      ],
+      [
+       -104.64943,
+       40.39558
+      ],
+      [
+       -104.62067,
+       40.42469
+      ],
+      [
+       -104.62063,
+       40.42477
+      ],
+      [
+       -104.6205,
+       40.42506
+      ],
+      [
+       -104.62029,
+       40.42553
+      ],
+      [
+       -104.62024,
+       40.42567
+      ],
+      [
+       -104.61941,
+       40.428
+      ],
+      [
+       -104.62123,
+       40.43877
+      ],
+      [
+       -104.62971,
+       40.45958
+      ],
+      [
+       -104.99753,
+       40.62452
+      ],
+      [
+       -105.0008,
+       40.62588
+      ],
+      [
+       -105.03834,
+       40.63927
+      ],
+      [
+       -105.04816,
+       40.63935
+      ],
+      [
+       -105.05373,
+       40.63927
+      ],
+      [
+       -105.05712,
+       40.63905
+      ],
+      [
+       -105.15752,
+       40.59499
+      ],
+      [
+       -105.15763,
+       40.58943
+      ],
+      [
+       -105.15962,
+       40.39727
+      ]
+     ]
+    ]
+   }
+  }
+ ]
+}

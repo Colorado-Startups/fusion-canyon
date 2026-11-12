@@ -25,7 +25,7 @@ flowchart LR
 | Work | Where |
 |---|---|
 | Source a figure, or correct one, with a primary link | `02_substance/` and `03_deliverables/fusion_canyon_vision.html` |
-| Add a corridor site: a lab, a company, a shop | `02_substance/`, one row with its source |
+| Add a corridor site: a lab, a company, a shop | `03_deliverables/map/fusion_canyon_corridor.geojson`, one feature with a `source_url`. Take the coordinate from the US Census Geocoder, USGS or the owner, never OpenStreetMap |
 | Weigh in on the name, the tagline "Build with fusion." and the mark | Discussions, Ideas |
 
 ## 2. Check it
