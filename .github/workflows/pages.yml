@@ -13,6 +13,7 @@ on:
       - "**/*.md"
       - "quality/**"
       - ".github/workflows/pages.yml"
+      - "03_deliverables/map/**"
   workflow_dispatch:
 
 permissions:
@@ -52,6 +53,10 @@ jobs:
           pages: process quality
           config: quality/process/config.json
           quality-config: quality/config.json
+
+      # The corridor map (03_deliverables/map) is served beside the two pages, at /map/.
+      - name: Add the corridor map
+        run: mkdir -p quality/dist/map && cp 03_deliverables/map/* quality/dist/map/
 
       - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'

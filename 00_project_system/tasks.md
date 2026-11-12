@@ -8,18 +8,21 @@ None. Next: work the good first issues and the owner's queue below.
 
 ## Blocked
 
-- **Secret scanning can be switched off again.** The repo is still attached to the org's `cs-free` code-security configuration, which turned scanning off on Space Peak. Detaching needs a token with the `admin:org` scope, which needs the owner's sign-in. Scanning and push protection read as enabled on 2026-11-12.
-- **Corridor map export.** The 16-site map is at `https://felt.com/map/Fusion-Canyon-corridor-draft-v0-tTmfg7iZTimB8wraqY9A07D`. Felt's MCP is not in the workspace's current plan, so Claude cannot read the layers.
-  - **Route without spending:** an editor exports each layer as GeoJSON from the Felt app. It lands in `03_deliverables/maps/`.
-  - **Before CC0 applies,** check that no geometry traces OpenStreetMap. ODbL data cannot be relicensed.
+None.
 
 ## Backlog
 
 1. **Decide the brand.** The name, the tagline "Build with fusion." and the palette are proposals on the concept draft. So is the mark, two canyon walls converging on a point of light.
-2. **Map the Felt sites into `02_substance/`.** Once the corridor map export lands, add one source row per site.
+2. **Grow the corridor map.** Marvel Fusion has no public US address, so it has no pin yet. More sites come through issue #9.
 
 ## Done
 
+- 2026-11-12 · **Corridor map rebuilt in the repo.**
+  - The Felt map's data is locked behind Felt's paid plan, so the map now lives in git as `03_deliverables/map/`, published by `pages.yml` at `/map/`.
+  - It runs MapLibre 5.24.0 over OpenFreeMap tiles, with Mapterhorn hillshade and 3D terrain.
+  - The 14 sites come from primary sources read on 2026-11-12. Coordinates come from the US Census Geocoder, USGS and EIA, so the data stays CC0. The boundary is the convex hull of the 2020 Census places of the four core towns.
+  - Found on the way: USGS streamgage 06752000 puts the Poudre Canyon mouth at 5,220 ft, not about 5,400. Advanced Energy's headquarters is Denver; Fort Collins is a research and service site.
+- 2026-11-12 · **`cs-free` removed.** Turning secret scanning on detached the repo from the org's `cs-free` configuration; the API reads `removed`.
 - 2026-11-12 · **FC-1 · Public and open to contributors.**
   - The repo is public, with Pages on (`https://colorado-startups.github.io/fusion-canyon/`) and Discussions on.
   - A ruleset requires `ci / ci-ok` and DCO, squash only. Fork runs wait for approval.
