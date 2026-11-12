@@ -4,7 +4,7 @@
 
 ## Active
 
-- **FC-1 · Go public and open to contributors.** Started 2026-11-12. Per Paul, the goal is "everything that we've been working on with Fusion Canyon live in a repo so contributors ... can start contributing." It follows Photon Mountain's PT-9.
+- **FC-1 · Go public and open to contributors.** Started 2026-11-12. Per the owner, the goal is "everything that we've been working on with Fusion Canyon live in a repo so contributors ... can start contributing." It follows Photon Mountain's PT-9.
   1. Restore the surviving work. The vision page is restored. The corridor map is still on Felt only.
   2. Fact gate the page against the source record.
   3. Add contributor files on top of the CC0 licensing PR.
@@ -21,16 +21,14 @@
 ## Backlog
 
 1. **Decide the brand.** The name, the tagline "Build with fusion." and the palette are proposals on the concept draft. So is the mark, two canyon walls converging on a point of light.
-2. **Source the claims the page makes but the record lacks.** Open items, as listed on the page:
-   - Rawhide Unit 1 "280 MW"
-   - ATLAS "$150M" per the page, where Photon Mountain's notes say $160M
-   - 45 fs at the 0.85 PW mode
-   - The elevations and corridor lengths
-   - The 2020 Census populations
-   - "50 miles" to Photon Mountain
+2. **Map the Felt sites into `02_substance/`.** Once the corridor map export lands, add one source row per site.
 
 ## Done
 
+- 2026-11-12 · **FC-1 steps 2 and 3 · Fact gate and Git Crafter setup.**
+  - Every figure on the page was rechecked against a source read on 2026-11-12. ATLAS is now $160M, per CSU (May 2026), the ALEPH pulse is 30 fs at 800 nm (LaserNetUS), and Marvel Fusion's headcount is 120+ (the company).
+  - The topping-out date moved to May 2026, and the comparison core is now named. Each change has a row in the source record.
+  - The Quality, Process, CI and open-repo files come from Git Crafter v4.1.0. Photon Mountain's skills, hooks and extra workflows were not carried over, per the owner's 2026-11-12 call for fewer guardrails.
 - 2026-11-12 · **FC-1 step 1, part one · Vision page restored.**
   - The repo had no copy, and the 2026-11-04 rebuild report lists none.
   - The live Artifact (`claude.ai/artifact/4ke4V4EajuRHSWsEnfYQ8V`, version 1790097756-20ca) was read in full and saved byte for byte as `03_deliverables/fusion_canyon_vision.html` (70,791 bytes, per `wc -c`). It has no scripts and no em dashes.

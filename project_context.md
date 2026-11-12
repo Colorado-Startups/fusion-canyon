@@ -18,12 +18,12 @@ The region is named for the canyon and built on the plain. Copy never places the
 
 ## What the corridor holds today
 
-Every figure here has a row in `02_substance/sources_2026-09-22.md`, checked 2026-09-22.
+Every figure here has a row in `02_substance/sources_2026-09-22.md`, rechecked 2026-11-12.
 
 | Asset | Status |
 |---|---|
 | ALEPH laser, CSU Advanced Beam Laboratory | Operating. 0.85 PW, per LaserNetUS and CSU |
-| ATLAS facility, CSU and Marvel Fusion, Foothills Campus | Under construction. Substantial completion targeted December 2026, per CSU |
+| ATLAS facility, CSU and Marvel Fusion, Foothills Campus | $160M per CSU. Topped out May 2026; substantial completion targeted December 2026 |
 | RISE hub, CSU and SLAC co-led | Funded by DOE in December 2023 |
 | Marvel Fusion | Munich and Fort Collins. Its staff and funding figures are company-reported |
 | Rawhide Unit 1, Platte River Power Authority | Coal generation ends by 2030, per PRPA |
