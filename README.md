@@ -2,6 +2,10 @@
 
 The Colorado Startups region for Fort Collins, Loveland, Windsor and Greeley: a laser fusion corridor in Larimer and Weld counties. Named for the canyon, built on the plain.
 
+a [Colorado Startups](https://coloradostartups.org) project
+
+Brand: [Colorado Startups brand guide](https://colorado-startups.github.io/brand/)
+
 **Status:** concept draft. The name, the tagline "Build with fusion." and the mark are proposals open for comment.
 
 | Start here | What it is |
