@@ -13,7 +13,7 @@ The region is named for the canyon and built on the plain. Copy never places the
 ## The core
 
 - **Core cities:** Fort Collins, Loveland and Windsor, the corners of the road loop US-287, CO-14, CO-257 and US-34.
-- **Nearby:** Greeley, 22.6 miles east of Fort Collins by USGS GNIS points, then Timnath, Wellington, Berthoud, Johnstown, Evans and Estes Park.
+- **Nearby:** Greeley, 23 straight-line miles east of Fort Collins (USGS GNIS points 204673 and 180649), then Timnath, Wellington, Berthoud, Johnstown, Evans and Estes Park.
 - **Proposal status:** the vision page calls the city set "a proposal, not a locked roster".
 
 ## What the corridor holds today
