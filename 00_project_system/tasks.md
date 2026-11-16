@@ -14,13 +14,14 @@ None.
 
 1. **Decide the brand.** The name, the tagline "Build with fusion." and the palette are proposals on the concept draft. So is the mark, two canyon walls converging on a point of light.
 2. **Grow the corridor map.** Marvel Fusion has no public US address, so it has no pin yet. More sites come through issue #9.
+3. **Owner's call: the line and the Foothills Campus.** CSU's Foothills Campus (ALEPH, ATLAS) sits west of US-287, outside the road loop. Should the line swing west to take it in? Open, not decided. The loop's roads are set in the website repo's `data/geo/boundaries.yaml`.
 
 ## Done
 
 - 2026-11-12 · **Corridor map rebuilt in the repo.**
   - The Felt map's data is locked behind Felt's paid plan, so the map now lives in git as `03_deliverables/map/`, published by `pages.yml` at `/map/`.
   - It runs MapLibre 5.24.0 over OpenFreeMap tiles, with Mapterhorn hillshade and 3D terrain.
-  - The 14 sites come from primary sources read on 2026-11-12. Coordinates come from the US Census Geocoder, USGS and EIA, so the data stays CC0. The boundary is the convex hull of the 2020 Census places of the four core towns.
+  - The 14 sites come from primary sources read on 2026-11-12. Coordinates come from the US Census Geocoder, USGS and EIA, so the data stays CC0. The first boundary outlined the 2020 Census places of the four core towns; the road loop replaced it on 2026-11-15.
   - Found on the way: USGS streamgage 06752000 puts the Poudre Canyon mouth at 5,220 ft, not about 5,400. Advanced Energy's headquarters is Denver; Fort Collins is a research and service site.
 - 2026-11-12 · **`cs-free` removed.** Turning secret scanning on detached the repo from the org's `cs-free` configuration; the API reads `removed`.
 - 2026-11-12 · **FC-1 · Public and open to contributors.**

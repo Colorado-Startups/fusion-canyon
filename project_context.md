@@ -4,7 +4,7 @@
 
 ## The idea
 
-Fusion Canyon is the Colorado Startups region for Fort Collins, Loveland, Windsor and Greeley, across Larimer and Weld counties. Its subject is laser-driven fusion: the lasers that drive it, and the supply chain those lasers need. The working tagline is "Build with fusion." It is a proposal, not a locked line.
+Fusion Canyon is the Colorado Startups region for Fort Collins, Loveland and Windsor, with Greeley nearby, across Larimer and Weld counties. Its subject is laser-driven fusion: the lasers that drive it, and the supply chain those lasers need. The working tagline is "Build with fusion." It is a proposal, not a locked line.
 
 ## The name
 
@@ -12,8 +12,8 @@ The region is named for the canyon and built on the plain. Copy never places the
 
 ## The core
 
-- **Core cities:** Fort Collins, Loveland, Windsor and Greeley.
-- **Nearby:** Timnath, Wellington, Berthoud, Johnstown, Evans and Estes Park.
+- **Core cities:** Fort Collins, Loveland and Windsor, the corners of the road loop US-287, CO-14, CO-257 and US-34.
+- **Nearby:** Greeley, 22.6 miles east of Fort Collins by USGS GNIS points, then Timnath, Wellington, Berthoud, Johnstown, Evans and Estes Park.
 - **Proposal status:** the vision page calls the city set "a proposal, not a locked roster".
 
 ## What the corridor holds today
