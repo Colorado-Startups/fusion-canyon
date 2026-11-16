@@ -4,7 +4,7 @@
 
 ## The idea
 
-Fusion Canyon is the Colorado Startups region for Fort Collins, Loveland and Windsor, with Greeley nearby, across Larimer and Weld counties. Its subject is laser-driven fusion: the lasers that drive it, and the supply chain those lasers need. The working tagline is "Build with fusion." It is a proposal, not a locked line.
+Fusion Canyon is the Colorado Startups region for Fort Collins, Loveland and Windsor, in Larimer and Weld counties. Its subject is laser-driven fusion: the lasers that drive it, and the supply chain those lasers need. The tagline is "Build for fusion." The owner set it on 2026-11-16.
 
 ## The name
 
@@ -13,8 +13,9 @@ The region is named for the canyon and built on the plain. Copy never places the
 ## The core
 
 - **Core cities:** Fort Collins, Loveland and Windsor, the corners of the road loop US-287, CO-14, CO-257 and US-34.
-- **Nearby:** Greeley, 23 straight-line miles east of Fort Collins (USGS GNIS points 204673 and 180649), then Timnath, Wellington, Berthoud, Johnstown, Evans and Estes Park.
-- **Proposal status:** the vision page calls the city set "a proposal, not a locked roster".
+- **Nearby:** Timnath, Wellington, Berthoud, Johnstown and Estes Park.
+- **Out:** Greeley and Evans. The owner cut Greeley on 2026-11-16 because it stretches the region too far, and Evans sits beyond it.
+- **Status:** the owner set the city list on 2026-11-16.
 
 ## What the corridor holds today
 
@@ -39,10 +40,10 @@ Every figure here has a row in `02_substance/sources_2026-09-22.md`, rechecked 2
 
 ## Relation to the other regions
 
-Photon Mountain (Boulder to Denver, computing with light) is the sister corridor, 50 miles south on I-25. The vision page sets the two up as a pair: one builds with light, and the other makes the power it runs on. Fusion Canyon reuses Photon Mountain's comparison-map method unchanged.
+Fusion Canyon is a joint project of Colorado Startups and Colorado Compute. It is one of three regions, with Photon Mountain (Boulder, Denver and Golden) and Space Peak. Photon Mountain, computing with light, is the sister corridor, about 50 miles south on I-25 by map distance. The vision page sets the two up as a pair: one builds with light, and the other makes the power it runs on. Fusion Canyon reuses Photon Mountain's comparison-map method unchanged.
 
 ## Where the project is today
 
-- The vision page is "concept draft v0" (2026-09-22). Its name, tagline, mark and palette are proposals awaiting a decision.
-- A georeferenced corridor map with 16 sites lives on Felt and is not yet in this repo.
-- The repo is being opened to contributors (FC-1). The work queue is `00_project_system/tasks.md`.
+- The owner set the tagline, mark, palette and fantasy layer on 2026-11-16. They are in `00_project_system/site_spec.md`.
+- The site for `fusioncanyon.co` is being built (FC-2). The work queue is `00_project_system/tasks.md`.
+- The vision page stays as "concept draft v0" (2026-09-22). The corridor map lives in `03_deliverables/map/`.
