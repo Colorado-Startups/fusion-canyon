@@ -14,7 +14,7 @@ flowchart LR
 
 | # | Milestone | Done when |
 |---|---|---|
-| 1 | Decide | A search finds Greeley only in the decision note |
+| 1 | Decide | No page or data file lists a dropped town as part of the corridor |
 | 2 | Measure | The Quality page builds on the latest Git Crafter, with a value or a reason for every metric |
 | 3 | Skeleton | `fusioncanyon.co` answers with its security headers |
 | 4 | Data | A fact with no source fails the build. Every roster row is complete |
@@ -35,6 +35,7 @@ None.
 ## Backlog
 
 1. **Fix clip playback on iPhone on the main site.** It waits for milestone 7, which proves the byte-range route here first.
+2. **Pin Marvel Fusion.** It has no public US address yet. Board card 4.5 holds it.
 
 ## Done
 
@@ -43,6 +44,7 @@ Details live in each pull request.
 | Date | Task |
 |---|---|
 | 2026-11-16 | Brand decided: the tagline "Build for fusion.", the palette, the phoenix and the Poudre Gate |
+| 2026-11-16 | Map line decided: main roads, with the west edge moving toward the Foothills Campus |
 | 2026-11-15 | Corridor boundary traced along four roads (#13) |
 | 2026-11-12 | Corridor map rebuilt in the repo (#11) |
 | 2026-11-12 | FC-1: public and open to contributors (#10) |

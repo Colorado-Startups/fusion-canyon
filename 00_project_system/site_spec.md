@@ -26,7 +26,7 @@ flowchart LR
 
 | Route | Job | Main action |
 |---|---|---|
-| `/` | Show the corridor in one scroll | Fly the canyon |
+| `/` | Show the corridor in one scroll | Fly the Poudre |
 | `/map/` | Find any site | Explore the live map |
 | `/directory/` | List who is here | Add your organisation |
 | `/fusion/` | Explain laser fusion and its gaps | Fire one shot |
