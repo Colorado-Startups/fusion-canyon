@@ -1,10 +1,32 @@
 # Tasks
 
-*Source of truth for the Fusion Canyon work queue. Rebuilt 2026-11-12 after the 2026-11-04 home wipe. One Active task at a time as a norm.*
+*Source of truth for the Fusion Canyon work queue. Cards live on the [project board](https://github.com/orgs/Colorado-Startups/projects/8). One Active task at a time as a norm.*
 
 ## Active
 
-None. Next: work the good first issues and the owner's queue below.
+**FC-2 · Build fusioncanyon.co.** Spec: [`site_spec.md`](site_spec.md).
+
+```mermaid
+flowchart LR
+  M1[1 Decide] --> M2[2 Measure] --> M3[3 Skeleton] --> M4[4 Data]
+  M4 --> M5[5 Pages] --> M6[6 AI] --> M7[7 Fantasy and motion] --> M8[8 Launch]
+```
+
+| # | Milestone | Done when |
+|---|---|---|
+| 1 | Decide | A search finds Greeley only in the decision note |
+| 2 | Measure | The Quality page builds on the latest Git Crafter, with a value or a reason for every metric |
+| 3 | Skeleton | `fusioncanyon.co` answers with its security headers |
+| 4 | Data | A fact with no source fails the build. Every roster row is complete |
+| 5 | Pages | Home, map and fusion each pass Lighthouse |
+| 6 | AI | Two agents given only the URL answer the four questions with source links |
+| 7 | Fantasy and motion | A loop plays on iPhone. Stills show under reduced motion |
+| 8 | Launch | Every Quality page score is at its goal, or a row says why |
+
+| Rule | Detail |
+|---|---|
+| Pull request | Small, with a table and a linked issue |
+| Issue | Opened when its step starts, closed by its pull request |
 
 ## Blocked
 
@@ -12,30 +34,18 @@ None.
 
 ## Backlog
 
-1. **Decide the brand.** The name, the tagline "Build with fusion." and the palette are proposals on the concept draft. So is the mark, two canyon walls converging on a point of light.
-2. **Grow the corridor map.** Marvel Fusion has no public US address, so it has no pin yet. More sites come through issue #9.
-3. **Owner's call: the line and the Foothills Campus.** CSU's Foothills Campus (ALEPH, ATLAS) sits west of US-287, outside the road loop. Should the line swing west to take it in? Open, not decided. The loop's roads are set in the website repo's `data/geo/boundaries.yaml`.
+1. **Fix clip playback on iPhone on the main site.** It waits for milestone 7, which proves the byte-range route here first.
 
 ## Done
 
-- 2026-11-12 · **Corridor map rebuilt in the repo.**
-  - The Felt map's data is locked behind Felt's paid plan, so the map now lives in git as `03_deliverables/map/`, published by `pages.yml` at `/map/`.
-  - It runs MapLibre 5.24.0 over OpenFreeMap tiles, with Mapterhorn hillshade and 3D terrain.
-  - The 14 sites come from primary sources read on 2026-11-12. Coordinates come from the US Census Geocoder, USGS and EIA, so the data stays CC0. The first boundary outlined the 2020 Census places of the four core towns; the road loop replaced it on 2026-11-15.
-  - Found on the way: USGS streamgage 06752000 puts the Poudre Canyon mouth at 5,220 ft, not about 5,400. Advanced Energy's headquarters is Denver; Fort Collins is a research and service site.
-- 2026-11-12 · **`cs-free` removed.** Turning secret scanning on detached the repo from the org's `cs-free` configuration; the API reads `removed`.
-- 2026-11-12 · **FC-1 · Public and open to contributors.**
-  - The repo is public, with Pages on (`https://colorado-startups.github.io/fusion-canyon/`) and Discussions on.
-  - A ruleset requires `ci / ci-ok` and DCO, squash only. Fork runs wait for approval.
-  - Private vulnerability reporting, secret scanning and push protection are on.
-  - CODEOWNERS names the new `@Colorado-Startups/maintainers` team.
-  - Five good first issues are open (#5 to #9).
-- 2026-11-12 · **FC-1 steps 2 and 3 · Fact gate and Git Crafter setup.**
-  - Every figure on the page was rechecked against a source read on 2026-11-12. ATLAS is now $160M, per CSU (May 2026), the ALEPH pulse is 30 fs at 800 nm (LaserNetUS), and Marvel Fusion's headcount is 120+ (the company).
-  - The topping-out date moved to May 2026, and the comparison core is now named. Each change has a row in the source record.
-  - The Quality, Process, CI and open-repo files come from Git Crafter v4.1.0. Photon Mountain's skills, hooks and extra workflows were not carried over, per the owner's 2026-11-12 call for fewer guardrails.
-- 2026-11-12 · **FC-1 step 1, part one · Vision page restored.**
-  - The repo had no copy, and the 2026-11-04 rebuild report lists none.
-  - The live Artifact (`claude.ai/artifact/4ke4V4EajuRHSWsEnfYQ8V`, version 1790097756-20ca) was read in full and saved byte for byte as `03_deliverables/fusion_canyon_vision.html` (70,791 bytes, per `wc -c`). It has no scripts and no em dashes.
-  - `project_context.md` was rebuilt from the page, the source record and the site's region data.
-- 2026-11-04 · **Source record restored** (PR 1), from a Claude transcript.
+Details live in each pull request.
+
+| Date | Task |
+|---|---|
+| 2026-11-16 | Brand decided: the tagline "Build for fusion.", the palette, the phoenix and the Poudre Gate |
+| 2026-11-15 | Corridor boundary traced along four roads (#13) |
+| 2026-11-12 | Corridor map rebuilt in the repo (#11) |
+| 2026-11-12 | FC-1: public and open to contributors (#10) |
+| 2026-11-12 | Fact gate and Git Crafter setup (#4) |
+| 2026-11-12 | Vision page restored from its Artifact |
+| 2026-11-04 | Source record restored |
