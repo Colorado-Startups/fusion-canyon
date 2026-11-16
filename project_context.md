@@ -40,7 +40,7 @@ Every figure here has a row in `02_substance/sources_2026-09-22.md`, rechecked 2
 
 ## Relation to the other regions
 
-Fusion Canyon is a joint project of Colorado Startups and Colorado Compute. It is one of three regions, with Photon Mountain (Boulder, Denver and Golden) and Space Peak. Photon Mountain, computing with light, is the sister corridor, about 50 miles south on I-25 by map distance. The vision page sets the two up as a pair: one builds with light, and the other makes the power it runs on. Fusion Canyon reuses Photon Mountain's comparison-map method unchanged.
+The owner's brief of 2026-11-16 sets the frame. Fusion Canyon is a joint project of Colorado Startups and Colorado Compute. It is one of three regions, with Photon Mountain (Boulder, Denver and Golden) and Space Peak. Photon Mountain, computing with light, is the sister corridor, about 50 miles south on I-25 by map distance. The vision page sets the two up as a pair: one builds with light, and the other makes the power it runs on. Fusion Canyon reuses Photon Mountain's comparison-map method unchanged.
 
 ## Where the project is today
 
