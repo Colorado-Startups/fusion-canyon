@@ -2,6 +2,8 @@
 
 The Colorado Startups region for Fort Collins, Loveland and Windsor, with Greeley nearby: a laser fusion corridor in Larimer and Weld counties. Named for the canyon, built on the plain.
 
+[![Map of Fusion Canyon: the loop of US-287, CO-14, CO-257 and US-34 around Fort Collins, Loveland and Windsor](https://coloradostartups.org/maps/fusion-canyon.svg)](https://colorado-startups.github.io/fusion-canyon/map/)
+
 a [Colorado Startups](https://coloradostartups.org) project
 
 Brand: [Colorado Startups brand guide](https://colorado-startups.github.io/brand/)
