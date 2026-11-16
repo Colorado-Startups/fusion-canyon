@@ -16,6 +16,7 @@
   --text:#0C141C; --dim:#4F5C6B; --faint:#7A8794; --plasma:#0A6A71; --rim:#A2521F;
   --c-operating:#0A6A71; --c-opening:#A2521F; --c-changing:#8A6400; --c-landform:#3E82AC; --c-context:#5D6B7A;
   --shadow:0 6px 24px rgba(12,20,28,.14);
+  --ink:#0C141C;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -24,6 +25,7 @@
     --text:#EAF0F6; --dim:#94A3B2; --faint:#657585; --plasma:#5CE1E6; --rim:#DE7F44;
     --c-operating:#5CE1E6; --c-opening:#DE7F44; --c-changing:#F2B33D; --c-landform:#6FB4DD; --c-context:#94A3B2;
     --shadow:0 6px 24px rgba(0,0,0,.45);
+    --ink:#080D14;
   }
 }
 :root[data-theme="dark"]{
@@ -32,6 +34,7 @@
   --text:#EAF0F6; --dim:#94A3B2; --faint:#657585; --plasma:#5CE1E6; --rim:#DE7F44;
   --c-operating:#5CE1E6; --c-opening:#DE7F44; --c-changing:#F2B33D; --c-landform:#6FB4DD; --c-context:#94A3B2;
   --shadow:0 6px 24px rgba(0,0,0,.45);
+  --ink:#080D14;
 }
 *{box-sizing:border-box}
 html,body{height:100%;margin:0}
@@ -53,7 +56,15 @@ aside{width:340px;max-width:100%;background:var(--surface);border-left:1px solid
 .legend input{accent-color:var(--plasma);width:16px;height:16px;margin:0}
 .dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto;border:1.5px solid var(--surface)}
 .count{margin-left:auto;font-family:'DM Mono',ui-monospace,monospace;font-size:.72rem;color:var(--faint)}
-.swatch-line{width:14px;height:10px;border:1.5px solid var(--plasma);background:color-mix(in srgb,var(--plasma) 15%,transparent);flex:0 0 auto}
+.swatch-line{width:14px;height:10px;border:2px solid var(--plasma);border-radius:3px;background:color-mix(in srgb,var(--plasma) 18%,transparent);box-shadow:0 0 0 1px color-mix(in srgb,var(--ink) 60%,transparent),0 0 6px color-mix(in srgb,var(--plasma) 45%,transparent);flex:0 0 auto}
+.roads{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px;padding:0;list-style:none}
+.roads li{font:500 .72rem 'DM Mono',ui-monospace,monospace;border:1px solid var(--plasma);color:var(--plasma);border-radius:3px;padding:2px 6px}
+.bars{display:grid;grid-template-columns:auto 1fr auto;gap:5px 8px;align-items:center;margin:0 0 8px;font-size:.8rem}
+.bars .bar{height:8px;border-radius:2px;background:var(--plasma)}
+.bars .bar.sv{background:var(--faint)}
+.bars .v{font-family:'DM Mono',ui-monospace,monospace;font-size:.72rem;color:var(--dim);text-align:right}
+.pop-in{display:inline-block;font-family:'DM Mono',ui-monospace,monospace;font-size:.66rem;letter-spacing:.06em;border-radius:3px;padding:1px 6px;margin:0 0 8px;border:1px solid var(--edge);color:var(--dim)}
+.pop-in.in{border-color:var(--plasma);color:var(--plasma)}
 .controls{display:flex;gap:8px;flex-wrap:wrap}
 .controls button{font:500 .74rem 'DM Mono',ui-monospace,monospace;background:var(--surface-2);color:var(--text);border:1px solid var(--edge);padding:7px 10px;cursor:pointer;border-radius:4px}
 .controls button[aria-pressed="true"]{border-color:var(--plasma);color:var(--plasma)}
@@ -111,6 +122,15 @@ aside{width:340px;max-width:100%;background:var(--surface);border-left:1px solid
         <li><label><input type="checkbox" id="toggle-boundary" checked><span class="swatch-line"></span>Corridor boundary (proposed)</label></li>
       </ul>
     </div>
+    <div class="block" aria-labelledby="line-h">
+      <p class="eyebrow" id="line-h">The line</p>
+      <ul class="roads" aria-label="Roads that close the loop"><li>US-287</li><li>CO-14</li><li>CO-257</li><li>US-34</li></ul>
+      <div class="bars" role="img" aria-label="Fusion Canyon's loop is 113 square miles, 1.19 times Silicon Valley's 95 square mile loop">
+        <span>Fusion Canyon</span><span class="bar" style="width:100%"></span><span class="v">113 sq mi</span>
+        <span>Silicon Valley</span><span class="bar sv" style="width:84%"></span><span class="v">95 sq mi</span>
+      </div>
+      <p class="note">1.19 times Silicon Valley's US-101 and I-280 loop. Both measured from Census road lines, 2026-11-15: <a href="https://github.com/Colorado-Startups/coloradostartups.org/blob/37232431f9bab6a2a3cb2e09701642f40b446187/data/geo/README.md">method</a>.</p>
+    </div>
     <div class="block">
       <p class="eyebrow">View</p>
       <div class="controls">
@@ -123,7 +143,7 @@ aside{width:340px;max-width:100%;background:var(--surface);border-left:1px solid
       <ul id="sites"></ul>
     </div>
     <div class="block" style="border-top:1px solid var(--edge);border-bottom:0">
-      <p class="note">Every site links its source. The boundary is the convex hull of the 2020 Census places of Fort Collins, Loveland, Windsor and Greeley, a proposal rather than a legal line. Pins come from the US Census Geocoder, USGS GNIS, EIA or the owner, never from OpenStreetMap, so the data stays CC0. Basemap: OpenFreeMap, OpenMapTiles, OpenStreetMap. Terrain: Mapterhorn.</p>
+      <p class="note">Every site links its source. The boundary is the loop US-287, CO-14, CO-257 and US-34 close, traced from US Census TIGERweb road lines; it is a proposal, not a legal line. Pins come from the US Census Geocoder, USGS GNIS, EIA or the owner, never from OpenStreetMap, so the data stays CC0. Basemap: OpenFreeMap, OpenMapTiles, OpenStreetMap. Terrain: Mapterhorn.</p>
     </div>
   </aside>
 </main>
@@ -144,11 +164,14 @@ aside{width:340px;max-width:100%;background:var(--surface);border-left:1px solid
     if (t === 'dark' || t === 'light') return t;
     return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   };
+  const calm = matchMedia('(prefers-reduced-motion: reduce)');
+  const move = (opts, kind) => calm.matches ? map.jumpTo(opts) : map[kind](opts);
   const status = document.getElementById('status');
   const say = msg => { status.textContent = msg; status.hidden = !msg; };
 
   let data = null, scheme0 = scheme(), terrainOn = false;
   const visible = new Set(CATS.map(c => c.id));
+  const BOUNDARY = ['boundary-fill', 'boundary-glow', 'boundary-casing', 'boundary-line'];
 
   const map = new maplibregl.Map({
     container: 'map',
@@ -189,10 +212,19 @@ aside{width:340px;max-width:100%;background:var(--surface);border-left:1px solid
       'hillshade-highlight-color': scheme0 === 'dark' ? '#4a6278' : '#ffffff',
       'hillshade-accent-color': scheme0 === 'dark' ? '#000000' : '#5b6672' } }, before);
     map.addSource('fc', { type: 'geojson', data, attribution: 'Fusion Canyon data: CC0' });
-    map.addLayer({ id: 'boundary-fill', type: 'fill', source: 'fc', filter: ['==', ['geometry-type'], 'Polygon'],
-      paint: { 'fill-color': css('--plasma'), 'fill-opacity': 0.07 } }, before);
-    map.addLayer({ id: 'boundary-line', type: 'line', source: 'fc', filter: ['==', ['geometry-type'], 'Polygon'],
-      paint: { 'line-color': css('--plasma'), 'line-width': 1.6, 'line-dasharray': [3, 2] } });
+    // The boundary sits under the basemap's place names: fill, glow, dark casing, then the line.
+    const poly = ['==', ['geometry-type'], 'Polygon'];
+    const round = { 'line-join': 'round', 'line-cap': 'round' };
+    map.addLayer({ id: 'boundary-fill', type: 'fill', source: 'fc', filter: poly,
+      paint: { 'fill-color': css('--plasma'), 'fill-opacity': 0.18 } }, before);
+    map.addLayer({ id: 'boundary-glow', type: 'line', source: 'fc', filter: poly, layout: round,
+      paint: { 'line-color': css('--plasma'), 'line-width': 14, 'line-blur': 6, 'line-opacity': 0.45 } }, before);
+    map.addLayer({ id: 'boundary-casing', type: 'line', source: 'fc', filter: poly, layout: round,
+      paint: { 'line-color': css('--ink'), 'line-width': 5.5, 'line-opacity': 0.6 } }, before);
+    map.addLayer({ id: 'boundary-line', type: 'line', source: 'fc', filter: poly, layout: round,
+      paint: { 'line-color': css('--plasma'), 'line-width': 3 } }, before);
+    const showLine = document.getElementById('toggle-boundary').checked ? 'visible' : 'none';
+    BOUNDARY.forEach(id => map.setLayoutProperty(id, 'visibility', showLine));
     map.addLayer({ id: 'sites-halo', type: 'circle', source: 'fc', filter: filterExpr(),
       paint: { 'circle-radius': ['interpolate', ['linear'], ['zoom'], 7, 7, 13, 14], 'circle-color': colorExpr(), 'circle-opacity': 0.18 } });
     map.addLayer({ id: 'sites', type: 'circle', source: 'fc', filter: filterExpr(),
@@ -204,14 +236,33 @@ aside{width:340px;max-width:100%;background:var(--surface);border-left:1px solid
     if (terrainOn) map.setTerrain({ source: 'dem-terrain', exaggeration: 1.4 });
   }
 
-  function popupHTML(p) {
+  // Ray casting against the boundary's one ring: true when the point lies inside the line.
+  function insideLine(pt) {
+    const poly = data.features.find(f => f.geometry.type === 'Polygon');
+    if (!poly) return null;
+    const ring = poly.geometry.coordinates[0], [x, y] = pt;
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i], [xj, yj] = ring[j];
+      if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+  function popupHTML(p, coords) {
     const el = document.createElement('div');
     const cat = document.createElement('p'); cat.className = 'pop-cat'; cat.textContent = p.category;
     cat.style.color = css((CATS.find(c => c.id === p.category) || CATS[4]).key);
     const n = document.createElement('p'); n.className = 'pop-name'; n.textContent = p.name;
     const t = document.createElement('p'); t.className = 'pop-town'; t.textContent = p.town || '';
     const note = document.createElement('p'); note.className = 'pop-note'; note.textContent = p.note || '';
-    el.append(cat, n, t, note);
+    el.append(cat, n, t);
+    const inside = insideLine(coords);
+    if (inside !== null) {
+      const tag = document.createElement('p'); tag.className = 'pop-in' + (inside ? ' in' : '');
+      tag.textContent = inside ? 'Inside the line' : 'Outside the line';
+      el.append(tag);
+    }
+    el.append(note);
     if (p.source_url && /^https:\/\//.test(p.source_url)) {
       const a = document.createElement('a'); a.className = 'pop-src'; a.href = p.source_url; a.target = '_blank'; a.rel = 'noopener';
       a.textContent = 'Source: ' + new URL(p.source_url).hostname.replace(/^www\./, '');
@@ -222,7 +273,7 @@ aside{width:340px;max-width:100%;background:var(--surface);border-left:1px solid
   let popup = null;
   function openSite(f) {
     if (popup) popup.remove();
-    popup = new maplibregl.Popup({ offset: 12, maxWidth: '300px' }).setLngLat(f.geometry.coordinates).setDOMContent(popupHTML(f.properties)).addTo(map);
+    popup = new maplibregl.Popup({ offset: 12, maxWidth: '300px' }).setLngLat(f.geometry.coordinates).setDOMContent(popupHTML(f.properties, f.geometry.coordinates)).addTo(map);
   }
 
   function buildPanel() {
@@ -241,7 +292,7 @@ aside{width:340px;max-width:100%;background:var(--surface);border-left:1px solid
       renderList();
     });
     document.getElementById('toggle-boundary').addEventListener('change', e => {
-      ['boundary-fill', 'boundary-line'].forEach(id => map.getLayer(id) && map.setLayoutProperty(id, 'visibility', e.target.checked ? 'visible' : 'none'));
+      BOUNDARY.forEach(id => map.getLayer(id) && map.setLayoutProperty(id, 'visibility', e.target.checked ? 'visible' : 'none'));
     });
     renderList();
   }
@@ -255,7 +306,7 @@ aside{width:340px;max-width:100%;background:var(--surface);border-left:1px solid
       b.innerHTML = `<span class="dot" style="background:var(${c.key})"></span><span><span class="n"></span><br><span class="t"></span></span>`;
       b.querySelector('.n').textContent = f.properties.name;
       b.querySelector('.t').textContent = `${f.properties.category} · ${f.properties.town || ''}`;
-      b.addEventListener('click', () => { map.flyTo({ center: f.geometry.coordinates, zoom: Math.max(map.getZoom(), 12.5), speed: 1.4 }); openSite(f); });
+      b.addEventListener('click', () => { move({ center: f.geometry.coordinates, zoom: Math.max(map.getZoom(), 12.5), speed: 1.4 }, 'flyTo'); openSite(f); });
       li.append(b); return li;
     }));
   }
@@ -265,7 +316,7 @@ aside{width:340px;max-width:100%;background:var(--surface);border-left:1px solid
       if (f.properties.category === 'Context' && f.properties.far) return;
       const g = f.geometry; (g.type === 'Point' ? [g.coordinates] : g.coordinates[0]).forEach(c => b.extend(c));
     });
-    map.fitBounds(b, { padding: 40, duration: 600 });
+    map.fitBounds(b, { padding: 40, duration: calm.matches ? 0 : 600 });
   }
 
   // The data and the basemap style load in either order; whichever lands second adds the overlay.
@@ -277,8 +328,8 @@ aside{width:340px;max-width:100%;background:var(--surface);border-left:1px solid
 
   document.getElementById('btn-terrain').addEventListener('click', e => {
     terrainOn = !terrainOn; e.currentTarget.setAttribute('aria-pressed', String(terrainOn));
-    if (terrainOn) { map.setTerrain({ source: 'dem-terrain', exaggeration: 1.4 }); map.easeTo({ pitch: 60, bearing: -20, duration: 900 }); }
-    else { map.setTerrain(null); map.easeTo({ pitch: 0, bearing: 0, duration: 700 }); }
+    if (terrainOn) { map.setTerrain({ source: 'dem-terrain', exaggeration: 1.4 }); move({ pitch: 60, bearing: -20, duration: 900 }, 'easeTo'); }
+    else { map.setTerrain(null); move({ pitch: 0, bearing: 0, duration: 700 }, 'easeTo'); }
   });
   document.getElementById('btn-fit').addEventListener('click', fitAll);
 
