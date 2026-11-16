@@ -2,7 +2,7 @@
  "type": "FeatureCollection",
  "name": "Fusion Canyon corridor",
  "license": "CC0-1.0",
- "sources_checked": "2026-11-15",
+ "sources_checked": "2026-11-16",
  "note": "Coordinates from the US Census Geocoder and TIGERweb, USGS (GNIS and NWIS) and EIA, never from OpenStreetMap.",
  "features": [
   {
@@ -203,26 +203,6 @@
     "coordinates": [
      -105.0807,
      40.57737
-    ]
-   }
-  },
-  {
-   "type": "Feature",
-   "properties": {
-    "name": "University of Northern Colorado",
-    "category": "Context",
-    "town": "Greeley",
-    "note": "UNC lists its address as 501 20th St. in Greeley.",
-    "source_url": "https://www.unco.edu/",
-    "address": "501 20th St., Greeley, CO 80639",
-    "coord_source": "census_geocoder",
-    "coord_detail": "Matched 501 20TH ST, GREELEY, CO, 80631 (TIGER line 188677873, right side); Census returned ZIP 80631, UNC uses 80639"
-   },
-   "geometry": {
-    "type": "Point",
-    "coordinates": [
-     -104.68485,
-     40.40609
     ]
    }
   },
